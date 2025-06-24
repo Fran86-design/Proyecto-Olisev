@@ -1,0 +1,123 @@
+.contacto-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #f4f0e6;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 1000px;
+  margin: 1rem auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-section {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #7a9e66;
+}
+
+.form-section h2 {
+  color: #4b6f44;
+  margin-bottom: 0.3rem;
+}
+
+.form-section p {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.campo {
+  margin-bottom: 1.2rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #4b6f44;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f8fff8;
+  transition: 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #7a9e66;
+  outline: none;
+  box-shadow: 0 0 5px rgba(122, 158, 102, 0.3);
+}
+
+button {
+  background: #7a9e66;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #5c7c4d;
+}
+
+.info-section {
+  background: #fffef9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #bfa76f;
+}
+
+.info-box h3 {
+  color: #7a6235;
+  margin-top: 1rem;
+}
+
+.info-box p {
+  margin: 0.3rem 0 1rem;
+  color: #444;
+}
+
+.mapa-container {
+  margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.mapa-container:hover iframe {
+  transform: scale(1.03);
+}
+
+@media (min-width: 768px) {
+  .contacto-wrapper {
+    flex-direction: row;
+  }
+
+  .form-section,
+  .info-section {
+    flex: 1;
+  }
+}

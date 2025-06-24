@@ -1,0 +1,65 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<div class="contenedor-facturacion">
+  <h2>📄 Facturas Generadas</h2>
+
+  <ul class="lista-facturas">
+    @for (factura of facturas; track factura.id) {
+      <li class="item-factura" (click)="verDetalles(factura)">
+        <span>#{{ factura.id }}</span>
+        <span>{{ factura.fecha }}</span>
+        <span>{{ factura.pedido.nombreCliente || 'Sin cliente' }}</span>
+        <span>{{ factura.totalConIva.toFixed(2) || '0.00' }} €</span>
+      </li>
+
+      @if (facturaSeleccionada?.id === factura.id && facturaSeleccionada; as facturaSel) {
+        <li class="detalle-factura expandida">
+          <h3>🧾 Factura #{{ facturaSel.id }}</h3>
+          <p>Cliente: {{ facturaSel.pedido.nombreCliente }}</p>
+          <p>Dirección: {{ facturaSel.direccion }}</p>
+          <p>Fecha: {{ facturaSel.fecha }}</p>
+
+          <h4>🛒 Productos</h4>
+          <ul class="lineas-factura">
+        @for (linea of facturaSel.lineas; track linea.nombreProducto) {
+          <li>
+            {{ linea.nombreProducto }} — {{ linea.cantidad }} x {{ linea.precioUnitario.toFixed(2) }} €
+          </li>
+          }
+        </ul>
+
+        <div class="totales">
+          <p>Subtotal: {{ facturaSel.total.toFixed(2) }} €</p>
+          <p>IVA ({{ facturaSel.iva * 100 }}%): {{
+            (facturaSel.total * facturaSel.iva).toFixed(2)
+          }} €</p>
+          <p>Envío: {{ facturaSel.costeEnvio.toFixed(2) }} €</p>
+          <p class="total-final">Total: {{ facturaSel.totalConIva.toFixed(2) }} €</p>
+        </div>
+
+        <div class="botones-factura">
+          <button class="btn eliminar" (click)="eliminarFactura(facturaSel.id)">🗑 Eliminar Factura</button>
+          <button class="btn descargar" (click)="descargarPDF(facturaSel.id)">📄 Descargar PDF</button>
+          <button class="btn cerrar" (click)="cerrarDetalles()">❌ Cerrar</button>
+        </div>
+      </li>
+    }
+  }
+  </ul>
+</div>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}
+
+<div class="botones-navegacion">
+  <button (click)="irAGestionTienda()">Gestión Tienda</button>
+  <button (click)="irAZonaPrivada()">Zona Privada</button>
+</div>

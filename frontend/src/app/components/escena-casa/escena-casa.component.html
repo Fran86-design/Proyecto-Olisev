@@ -1,0 +1,29 @@
+<div class="contenedorEscena">
+    <img class="fondoCasa" [class.animarSalida]="salir"  src="/elige/casa.png" alt="Interior de casa" />
+    <img class="fondo"  src="/elige/hombre5ab.png" alt=" hombre">
+        <div [class.textoCasa1]="textoCasa" class="textoCasa">
+            <p class="cita">"La naturaleza empieza en casa ..."</p>
+            <p>
+                Desde la quietud de nuestro hogar, se abre la puerta a una forma de vida más consciente. Aquí, cada objeto cuenta
+                una historia hecha de barro, madera y respeto. Vivimos rodeados de materiales nobles, de texturas reales, de
+                silencios que hablan. Porque creemos que la sostenibilidad no empieza en el campo, sino en cada decisión que
+                tomamos bajo este techo: qué consumimos, cómo habitamos, cuánto necesitamos. Abrir la puerta es mucho más que un
+                gesto: es el primer paso hacia una vida más en armonía con la tierra.
+            </p>
+            <button (click)="onSiguiente()">Siguiente...</button>
+        </div>
+        <div [class.textoCampo2]="textoCampo" class="textoCampo">
+            <p class="cita2">"Cosechar sin dañar, cultivar con sentido..."</p>
+            <p>
+                Bajo el cielo azul y entre la sombra de los olivos, 
+                nace el verdadero lujo: alimentos cultivados con respeto. 
+                Esta no es solo una imagen del campo, es el reflejo de una forma de trabajar que escucha a la tierra. 
+                Sin prisas. Sin químicos. Sin desperdicios. 
+                Cada aceituna recogida a mano representa un compromiso con el medioambiente y con las generaciones que vendrán. 
+                Porque sabemos que un futuro sostenible no se cosecha con tecnología agresiva, 
+                sino con manos limpias, procesos naturales y decisiones que cuidan más de lo que extraen.
+            </p>
+            <button (click)="siguiente()">Siguiente...</button>
+        </div>
+</div>
+

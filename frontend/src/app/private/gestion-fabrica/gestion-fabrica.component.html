@@ -1,0 +1,258 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+
+<div class="layout">
+  <aside class="menu-lateral">
+    <h2>📁 Campañas</h2>
+
+    <div class="crear-campana">
+      <form (submit)="crearCampana($event)">
+        <label>Nueva Campaña:</label>
+        <input name="nuevaCampana" required />
+        <button type="submit">➕ Crear</button>
+      </form>
+    </div>
+
+    <ul class="lista-campanas">
+      @for (campana of campanasDisponibles; track campana) {
+        <li class="campana-item">
+          <div class="nombre">{{ campana }}</div>
+          <div class="acciones">
+            <button (click)="abrirDetalleCampana(campana)">📋 Ver Lista</button>
+            <button (click)="abrirFormularioEntrada(campana)">➕ Nueva Entrada</button>
+          </div>
+        </li>
+      }
+    </ul>
+
+    <div class="botones-navegacion">
+      <button (click)="irAZonaPrivada()">Volver a Zona Privada</button>
+    </div>
+  </aside>
+
+  <main class="contenido-principal">
+    @if (mostrarModal && !modoFormulario) {
+      <div class="modal">
+        <div class="modal-contenido">
+          <div class="cabecera-modal">
+            <h2>📋 Campaña {{ campanaSeleccionada }}</h2>
+            <button class="btn cerrar" (click)="cerrarModal()">✖</button>
+          </div>
+
+          <div class="filtros-entradas">
+            <div class="filtro-item">
+              <label for="filtro-cliente">Cliente</label>
+              <div class="input-con-x">
+                <input type="text" id="filtro-cliente" onkeydown="window.enterFiltrar(event)" />
+                <span class="x-btn" onclick="window.limpiarFiltro('filtro-cliente')">✖</span>
+              </div>
+            </div>
+
+            <div class="filtro-item">
+              <label for="filtro-fecha">Fecha</label>
+              <div class="input-con-x">
+                <input type="date" id="filtro-fecha" onkeydown="window.enterFiltrar(event)" />
+                <span class="x-btn" onclick="window.limpiarFiltro('filtro-fecha')">✖</span>
+              </div>
+            </div>
+
+            <div class="filtro-item">
+              <label for="filtro-variedad">Variedad</label>
+              <div class="input-con-x">
+                <input type="text" id="filtro-variedad" onkeydown="window.enterFiltrar(event)" />
+                <span class="x-btn" onclick="window.limpiarFiltro('filtro-variedad')">✖</span>
+              </div>
+            </div>
+
+            <div class="filtro-item">
+              <label for="filtro-cocedera">Cocedera</label>
+              <div class="input-con-x">
+                <input type="text" id="filtro-cocedera" onkeydown="window.enterFiltrar(event)" />
+                <span class="x-btn" onclick="window.limpiarFiltro('filtro-cocedera')">✖</span>
+              </div>
+            </div>
+
+            <div class="filtro-item">
+              <label for="filtro-fermentador">Fermentador</label>
+              <div class="input-con-x">
+                <input type="text" id="filtro-fermentador" onkeydown="window.enterFiltrar(event)" />
+                <span class="x-btn" onclick="window.limpiarFiltro('filtro-fermentador')">✖</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabla-detalle-wrapper">
+            <table class="tabla-detalle-campana">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cliente</th>
+                  <th>Nº Lote</th>
+                  <th>Variedad</th>
+                  <th>Tipo</th>
+                  <th>Kilos</th>
+                  <th>Fecha Entrada</th>
+                  <th>Cocedera</th>
+                  <th>Fecha Cocedera</th>
+                  <th>Fermentador</th>
+                  <th>Fecha Fermentador</th>
+                  <th>Gr. Sal</th>
+                  <th>Gr. Sosa</th>
+                  <th>Observaciones</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (entrada of entradasFiltradas[campanaSeleccionada]; track entrada.id) {
+                  <tr>
+                    <td>{{ entrada.id }}</td>
+                    <td>{{ entrada.cliente.nombre }} {{ entrada.cliente.apellidos }}</td>
+                    <td>{{ entrada.lote }}</td>
+                    <td>{{ entrada.variedad }}</td>
+                    <td>{{ entrada.tipo }}</td>
+                    <td>{{ entrada.kilos }}</td>
+                    <td>{{ entrada.fechaEntrada }}</td>
+                    <td>{{ entrada.cocedera }}</td>
+                    <td>{{ entrada.fechaCocedera }}</td>
+                    <td>{{ entrada.fermentador }}</td>
+                    <td>{{ entrada.fechaFermentador }}</td>
+                    <td>{{ entrada.gradosSal }}</td>
+                    <td>{{ entrada.gradosSosa }}</td>
+                    <td>{{ entrada.observaciones }}</td>
+                    <td>
+                      <button (click)="editarEntrada(entrada)">Editar</button>
+                      <button (click)="descargarPDF(entrada)">PDF</button>
+                      <button (click)="eliminarEntrada(entrada.id)">Eliminar</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (mostrarModal && modoFormulario) {
+      <div class="modal">
+        <div class="modal-contenido formulario-novedoso">
+          <h2>
+            {{ entradaEditando ? '✏️ Editar Entrada' : '➕ Nueva Entrada' }}
+            — Campaña {{ campanaSeleccionada }}
+          </h2>
+
+          <form (submit)="registrarEntrada($event)" class="grid-formulario">
+            <input type="hidden" name="campana" [value]="campanaSeleccionada" />
+            <input type="hidden" name="clienteId" id="clienteId" [value]="entradaEditando?.cliente?.id ?? ''" />
+
+            <div class="campo campo-full posicion-relative">
+              <label for="busquedaCliente">Buscar Cliente</label>
+              <input
+                type="text"
+                id="busquedaCliente"
+                name="busquedaCliente"
+                placeholder="Nombre del cliente..."
+                oninput="window.filtrarClientes(this.value)"
+                [value]="entradaEditando ? entradaEditando.cliente.nombre + ' ' + entradaEditando.cliente.apellidos : ''"
+              />
+              <ul id="sugerencias" class="sugerencias oculto"></ul>
+            </div>
+
+            <div class="campo">
+              <label>Nº Lote</label>
+              <input type="number" name="lote" required min="1" [value]="entradaEditando?.lote ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Variedad</label>
+              <select name="variedad" required>
+                <option value="">Seleccionar</option>
+                <option value="Manzanilla" [selected]="entradaEditando?.variedad === 'Manzanilla'">Manzanilla</option>
+                <option value="Molino" [selected]="entradaEditando?.variedad === 'Molino'">Molino</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label>Tipo</label>
+              <select name="tipo" required>
+                <option value="">Seleccionar</option>
+                <option value="Mesa" [selected]="entradaEditando?.tipo === 'Mesa'">Mesa</option>
+                <option value="Molino" [selected]="entradaEditando?.tipo === 'Molino'">Molino</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label>Kilos</label>
+              <input type="number" name="kilos" step="0.1" required [value]="entradaEditando?.kilos ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Fecha Entrada</label>
+              <input type="date" name="fechaEntrada" required [value]="entradaEditando?.fechaEntrada ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Cocedera</label>
+              <input type="text" name="cocedera" placeholder="ej: C1" pattern="C[1-5]" required [value]="entradaEditando?.cocedera ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Fecha Cocedera</label>
+              <input type="date" name="fechaCocedera" [value]="entradaEditando?.fechaCocedera ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Fermentador</label>
+              <input
+                type="text"
+                name="fermentador"
+                placeholder="ej: F1"
+                required
+                pattern="F([1-9]|[1-2][0-9]|30)"
+                [value]="entradaEditando?.fermentador ?? ''"
+              />
+            </div>
+
+            <div class="campo">
+              <label>Fecha Fermentador</label>
+              <input type="date" name="fechaFermentador" [value]="entradaEditando?.fechaFermentador ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Grados Sal</label>
+              <input type="number" name="gradosSal" step="0.1" [value]="entradaEditando?.gradosSal ?? ''" />
+            </div>
+
+            <div class="campo">
+              <label>Grados Sosa</label>
+              <input type="number" name="gradosSosa" step="0.1" [value]="entradaEditando?.gradosSosa ?? ''" />
+            </div>
+
+            <div class="campo-full">
+              <label>Observaciones</label>
+              <textarea name="observaciones" rows="3">{{ entradaEditando?.observaciones ?? '' }}</textarea>
+            </div>
+
+            <div class="acciones-formulario">
+              <button type="submit" class="btn verde">
+                {{ entradaEditando ? '💾 Guardar cambios' : '✅ Registrar' }}
+              </button>
+              <button type="button" class="btn rojo" (click)="cerrarModal()">❌ Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
+  </main>
+</div>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}

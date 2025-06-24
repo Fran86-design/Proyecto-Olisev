@@ -1,0 +1,23 @@
+<div class="mesa">
+    <img src="/blog/mesa.png" alt="mesa">
+</div>
+
+<div class="aceite">
+    <img src="/blog/aceite.png" alt="aceite">
+</div>
+
+<div class="hoja">
+    <img #tostadaImg src="/blog/hoja_rama.png" alt="hoja" />
+</div>
+
+<div class="tapon" (click)="toggleTapon()">
+    <!-- Si `taponQuitado` es true, se aplica la clase 'abierto' -->
+    <!-- Si `taponQuitado` es false, se aplica la clase 'cerrado' -->
+    <img src="/blog/tapon.png" alt="tapon"
+    [class.abierto]="taponQuitado"
+    [class.cerrado]="!taponQuitado">
+</div>
+
+<!-- Inserta el componente de la revista dentro del blog -->
+<app-revista></app-revista>
+

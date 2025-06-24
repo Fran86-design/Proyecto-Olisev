@@ -1,0 +1,49 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<div class="form-wrapper">
+  <h2>Editar Producto</h2>
+
+  <form #formularioProducto (submit)="guardarCambios($event)" enctype="multipart/form-data">
+    
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre del producto" required />
+    
+    <input type="number" name="precio" id="precio" placeholder="Precio (€)" step="0.01" required />
+    
+    <textarea name="descripcion" id="descripcion" rows="3" placeholder="Descripción del producto"></textarea>
+    
+    <input type="text" name="descuento" id="descuento" placeholder="Descuento (%)" />
+    
+    <label for="visible">
+      <input type="checkbox" name="visible" id="visible" />
+      ¿Visible en tienda?
+    </label>
+
+    <input type="file" name="imagen" id="imagen" #inputImagen 
+    accept="image/jpeg,image/jpg,image/png,image/gif" 
+    (change)="previsualizarImagen($event)" />
+    <small>Formatos permitidos: JPEG, PNG, GIF. Tamaño máximo: 10MB</small>
+
+    <div class="imagen-preview">
+      <h4>Vista previa:</h4>
+      <img #previewImagen id="previewImagen" style="display: none; max-width: 300px; max-height: 300px; border: 1px solid #ddd; border-radius: 4px;" />
+    </div>
+
+    <div class="botones-acciones">
+      <button type="submit">Guardar Cambios</button>
+      <button type="button" (click)="cancelarImagen()">Cancelar Imagen</button>
+      <button type="button" (click)="volverAtras()">← Volver</button>
+      <button type="button" (click)="irZonaPrivada()">Zona Privada</button>
+    </div>
+  </form>
+</div>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}

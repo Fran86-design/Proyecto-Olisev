@@ -1,0 +1,55 @@
+<div id="mensajeCarritoVacio" class="mensaje-carrito-vacio hidden">
+    Tu carrito está vacío. Serás redirigido en unos segundos...
+</div>
+
+<div class="pago-container">
+    <h2>Finalizar Compra</h2>
+
+    <section class="info-usuario">
+        <h3>Información de contacto</h3>
+
+        <div class="opciones-usuario">
+            <button id="btnLogin">Iniciar sesión</button>
+            <button id="btnRegistro">Registrarse</button>
+            <span>o continuar como invitado</span>
+        </div>
+
+        <form id="formInvitado">
+            <input type="text" placeholder="Nombre completo" required />
+            <input type="email" placeholder="Correo electrónico" required />
+            <input type="tel" placeholder="Teléfono (opcional)" />
+        </form>
+    </section>
+
+    <section class="envio-info">
+        <h3>Dirección de envío</h3>
+        <form id="formformEnvio">
+            <input type="text" placeholder="Calle y número" required />
+            <input type="text" placeholder="Ciudad" required />
+            <input type="text" placeholder="Provincia" required />
+            <input type="text" placeholder="Código postal" required />
+            <input type="text" placeholder="País" required />
+        </form>
+    </section>
+
+    <section class="resumen-pago">
+        <h3>Resumen del pedido</h3>
+        <div id="resumenPedido"></div>
+        <p>Total: <strong id="totalPagar">0.00 €</strong></p>
+    </section>
+
+    <button class="btn-finalizar" id="btnProcederPago">💳 Proceder al pago</button>
+</div>
+<div class="acciones-pago">
+    <button id="btnVolverCarrito">Volver al carrito</button>
+    <button id="btnVolverTienda">Volver a tienda</button>
+</div>
+
+@if (alerta.visible) {
+    <div class="alerta alerta-{{ alerta.tipo }}">
+        <span class="cerrar" (click)="alerta.visible = false">×</span>
+        {{ alerta.mensaje }}
+    </div>
+}
+
+<app-login-tienda class="hidden" (loginExitoso)="onLoginDesdePago($event)"></app-login-tienda>

@@ -1,0 +1,24 @@
+<div id="carritoPage" class="checkout-page">
+  <div id="carritoLista" class="carrito-lista"></div>
+
+  <div class="resumen">
+    <!-- Ahorro total gracias a descuentos. Referenciado con @ViewChild 'ahorroTotal' en TS -->
+    <p>Ahorro: <span #ahorroTotal>$0.00</span></p>
+    <!-- Subtotal de productos sin incluir envío. Referenciado como @ViewChild 'subtotalCarrito' -->
+    <p>Subtotal: <span #subtotalCarrito>$0.00</span></p>
+    <!-- Costo fijo del envío. Referenciado como @ViewChild 'envioPagar' -->
+    <p>Envío: <span #envioPagar>2.50 €</span></p>
+    <!-- Total estimado a pagar (subtotal + envío). Referenciado como @ViewChild 'totalEstimado' -->
+    <p>Total: <strong #totalEstimado>$0.00</strong></p> 
+    <button class="checkout-btn">🔒 Comprar</button>
+  </div>
+
+  <div class="productos-extra">
+    <h3>Productos que podrían interesarte</h3>
+    <div id="productosExtra" class="extra-scroll"></div>
+  </div>
+
+  <div class="volverTienda">
+    <button class="seguir-comprando-btn">🛍️ Seguir comprando</button>
+  </div>
+</div>

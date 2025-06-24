@@ -1,0 +1,67 @@
+<!--
+  Componente hijo que muestra información del usuario actual conectado.
+  Se le pasan los datos como propiedades de entrada (@Input)'
+-->
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+
+<h2>Historial de Movimientos de Stock</h2>
+<!--
+  Filtro para seleccionar qué tipo de movimiento mostrar:
+    - TODOS: muestra todos
+    - ENTRADA: solo entradas
+    - SALIDA: solo salidas
+  El evento `(change)` llama al método cambiarFiltroTipo($event)
+-->
+<div class="filtro-movimientos">
+  <label>Filtrar por tipo:</label>
+  <select (change)="cambiarFiltroTipo($event)">
+    <option value="TODOS">Todos</option>
+    <option value="ENTRADA">Entradas</option>
+    <option value="SALIDA">Salidas</option>
+  </select>
+</div>
+<!--
+  Si hay movimientos filtrados, se muestra la tabla; si no, un mensaje alternativo
+-->
+@if (movimientosFiltrados().length > 0) {
+  <table class="tabla-movimientos">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Producto</th>
+        <th>Categoría</th>
+        <th>Cantidad</th>
+        <th>Stock actual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--
+        Bucle @for que recorre los movimientos filtrados.
+        track m.id mejora el rendimiento evitando recrear filas innecesarias.
+      -->
+      @for (m of movimientosFiltrados(); track m.id) {
+        <tr>
+          <td>{{ m.fecha | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+          <td>{{ m.tipo === 'ENTRADA' ? 'Entrada' : 'Salida' }}</td>
+          <td>{{ m.producto.nombre }}</td>
+          <td>{{ m.producto.categoria || '-' }}</td>
+          <td>{{ m.cantidad }}</td>
+          <td>{{ m.producto.stock }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+<!-- Mensaje que se muestra si no hay movimientos -->
+} @else {
+  <p>No hay movimientos registrados.</p>
+}
+
+<div class="botones-navegacion">
+    <button (click)="irAReportes()">Salir</button>
+</div>

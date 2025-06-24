@@ -1,0 +1,129 @@
+<header class="navbar" id="mainHeader">
+    <div class="leftSection">
+        <!-- Botón para abrir/cerrar el menú lateral -->
+        <button class="menuBtn" (click)="toggleMenu()">
+          <img id="vector" src="/iconos/Vector.svg" alt="vector">
+        </button>
+        <img class="logo" src="/logo.png" alt="logo Olisev">
+        <h1 class="name">OLISEV</h1>
+    </div>
+
+    <div class="rightSection">
+        <!-- Dropdown de clientes (clientes / proveedores) -->
+        <div class="zonaClienteContainer" (click)="toggleClientesDropdown($event)">
+            <button class="btn">
+              <img src="/iconos/zonaClientes.svg" alt="zona clientes">
+                Zona Clientes
+            </button>
+            <!-- Menú desplegable que aparece si mostrarClientesDropdown es true -->
+            @if (mostrarClientesDropdown) {
+                <div class="clientDropdown" (click)="$event.stopPropagation()">
+                    <ul>
+                        <li (click)="irA('clientes-tienda')">Clientes</li>
+                        <li (click)="irA('clientes-empresa')">Proveedores</li>
+                    </ul>
+                </div>
+            }
+        </div>
+        <!-- Botón para abrir login de zona privada -->
+        <button class="btn" (click)="mostrarLogin()">
+          <img src="/iconos/zonaClientes.svg" alt="zona privada">
+            Zona Privada
+        </button>
+        <div class="carrito-wrapper">
+            <img id="carro" src="/iconos/carro.svg" alt="carrito" />
+            <span id="contadorCarrito" class="carrito-contador">0</span>
+        </div>
+    </div>
+</header>
+
+<div class="linea"></div>
+
+<!-- MENÚ LATERAL: se muestra si isMenuAbierto es true -->
+@if (isMenuAbierto) {
+    <div class="menuLateral" #menuLateral [class.hidden]="!isMenuAbierto">
+        <ul class="menuLista">
+            <!-- Cada item cierra el menú al hacer clic -->
+            <li [class.activo]="rutaActiva === '/'" (click)="cerrarMenu()">
+                <a routerLink="/">Inicio</a>
+            </li>
+            <li [class.activo]="rutaActiva === '/tienda-ventas'" (click)="cerrarMenu()">
+                <a routerLink="/tienda-ventas">Tienda</a>
+            </li>
+            <li [class.activo]="rutaActiva === '/tienda'" (click)="cerrarMenu()">
+                <a routerLink="/tienda">Catálogo</a>
+            </li>
+            <li [class.activo]="rutaActiva === '/elige'" (click)="cerrarMenu()">
+                <a routerLink="/elige" (click)="cerrarMenu()">Producto Sostenible</a>
+            </li>
+            <li [class.activo]="rutaActiva === '/transforma'" (click)="cerrarMenu()">
+                <a routerLink="/transforma" (click)="cerrarMenu()">Transforma</a>
+            </li>
+            <li [class.activo]="rutaActiva === '/blog'" (click)="cerrarMenu()">
+                <a routerLink="/blog" (click)="cerrarMenu()">Blog</a></li>
+            <li [class.activo]="rutaActiva === '/contacto'" (click)="cerrarMenu()">
+                <a routerLink="/contacto" (click)="cerrarMenu()">Contacto</a>
+            </li>
+            <!-- Link directo a login privado -->
+            <li><a routerLink="/privada" (click)="mostrarLogin()">Zona Privada</a></li>
+        </ul>
+    </div>
+}
+<!-- PANEL LATERAL DEL CARRITO: aparece cuando se hace clic en el ícono del carrito -->
+<div id="carritoLateral" class="carrito-lateral">
+    <div class="carrito-header">
+        <h3>🛒 Carrito</h3>
+        <button id="cerrarCarrito" class="cerrar-btn">✖</button>
+    </div>
+
+  <div id="carritoItems" class="carrito-items"></div>
+
+  <div class="carrito-resumen">
+    <p>Subtotal: <strong id="subtotalCarrito">0.00 €</strong></p>
+    <p>Descuento: <strong id="descuentoCarrito">0.00 €</strong></p>
+    <p>Total: <strong id="totalCarrito">0.00 €</strong></p>
+    <button class="btn-carrito verde" (click)="irAlCarrito()">Ir al carrito</button>
+    <button class="btn-carrito oscuro">Comprar ahora</button>
+  </div>
+</div>
+
+<!-- Aquí se cargan dinámicamente las rutas hijas del router -->
+<router-outlet></router-outlet>
+
+<!-- FOOTER (solo si mostrarFooter es true) -->
+@if (mostrarFooter) {
+  <footer id="footer" class="footer {{ claseFooter }}">
+    <div class="footerContent">
+      <div class="footerSection about">
+        <h3>OLISEV</h3>
+        <p>El auténtico sabor de Andalucía. Productos locales y de calidad.</p>
+      </div>
+      <div class="footerSection links">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a routerLink="/">Inicio</a></li>
+          <li><a href="/tienda-ventas">Productos</a></li>
+          <li><a routerLink="/contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footerSection contact">
+        <h4>Contacto</h4>
+        <p>Email: info.olisev&#64;gmail.com</p>
+        <p>Tel: +34 600 000 000</p>
+        <div class="socials">
+          <a href="#"><img src="/iconos/facebook.svg" alt="Facebook"></a>
+          <a href="#"><img src="/iconos/instagram.svg" alt="Instagram"></a>
+          <a href="#"><img src="/iconos/Twitter.svg" alt="Twitter"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footerBottom">
+      &copy; 2025 OLISEV | Todos los derechos reservados
+    </div>
+  </footer>
+}
+<!-- Componentes de login ocultos inicialmente. Se muestran desde el TS -->
+<app-login #loginComp class="login-overlay hidden"></app-login>
+<app-login-tienda #loginTienda class="login-overlay hidden"></app-login-tienda>
+<app-login-fabrica #loginFabrica class="login-overlay hidden"></app-login-fabrica>
+

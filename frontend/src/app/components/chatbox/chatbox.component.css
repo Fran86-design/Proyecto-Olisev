@@ -1,0 +1,94 @@
+.chatToggleButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #23ee1c;
+    color: white;
+    font-size: 5px;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    opacity: 0.8;
+    color: #ffffff;
+
+}
+
+.chatbox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 250px;
+    font-family: Arial, sans-serif;
+    font-size: 13px; 
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.8;
+}
+
+.chatHeader {
+    background-color: #23ee1c;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    text-align: right;
+}
+
+.chatBody {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chatMessages {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.chatbox .chatMessages .message.cliente {
+    background-color: #dcf8c6; 
+    align-self: flex-end;
+    text-align: right;
+    color: #000;
+}
+
+.chatOptions button {
+    width: 100%;
+    background-color: #e9ecef;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.chatOptions button:hover {
+    background-color: #d6d8db;
+}
+
+.hidden {
+    display: none;
+}
+
+.timestamp {
+    display: block;
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+    text-align: right;
+}

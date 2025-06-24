@@ -1,0 +1,313 @@
+.carrusel {
+    width: 100%;
+    height: 100vh;
+    background-color: #d9e6ca;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+}
+
+.slides {
+    position: absolute;
+    bottom: 100px;
+    left: 100px;
+    z-index: 3;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    padding: 60px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.info {
+    flex: 1;
+    z-index: 2;
+}
+
+.info h4 {
+    font-size: 24px;
+    color: #47ac22;
+    margin-bottom: 10px;
+}
+
+.info h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.botones {
+    display: flex;
+    gap: 30px;
+    margin-left: 155px;
+}
+
+.botones button {
+    padding: 12px 34px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botones button:first-child {
+    background-color: #47ac22;
+    color: white;
+}
+
+.botones button:last-child {
+    background-color: white;
+    color: #47ac22;
+    border: 2px solid #47ac22;
+}
+
+.imagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    transform: rotate(5deg);
+    top: 100px;
+    right: -270px;
+    position: relative;
+    filter: drop-shadow(10px 5px 5px rgba(0, 0, 0, 0.7));
+}
+
+.imagen img {
+    max-height: 70vh;
+    width: auto;
+}
+
+.textoVerticalNegro,
+.textoVerticalBlanco {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-2%) rotate(270deg);
+    font-size: 80px;
+    font-weight: 900;
+    z-index: 1;
+}
+
+.textoVerticalNegro { 
+    right: 140px;
+    color: black; 
+}
+
+.textoVerticalBlanco {
+    right: 40px; 
+    color: white; 
+}
+
+.hojaVerde {
+    position: relative;
+    width: 90px;
+    right: -10px;
+    top: 250px;
+}
+
+.hojaNegra {
+    position: relative;
+    width: 100px;
+    right: 1100px;
+    top: 150px;
+    opacity: 0.6;
+}
+
+.prodPeq {
+    position: relative;
+    width: 200px;
+    right: 700px;
+    top: -50px;
+    opacity: 0.6;
+}
+
+.miniaturas {
+    position: absolute;
+    bottom: 40px;
+    left: 200px;
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+}
+
+.mini {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.mini:hover,
+.mini.activa {
+    opacity: 1;
+}
+
+.mini.activa {
+    border-color: #47ac22;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+/* 
+* Clase base para animaciones: 
+* comienza con opacidad 0 y asegura que los estilos animados se mantengan al finalizar.
+*/
+.anim { opacity: 0; animation-fill-mode: forwards; }
+/* 
+* Título: entra desde arriba con una animación de 0.8s 
+* y un pequeño retraso (0.2s).
+*/
+.titulo { animation: slideInTop 0.8s ease-out 0.2s forwards; }
+/* 
+* Subtítulo: también entra desde arriba, pero más rápido (0.6s) 
+* y sin retraso.
+*/
+.subtitulo { animation: slideInTop 0.6s ease-out 0s forwards; }
+/* 
+* Botones de entrada: aparecen con efecto de fadeIn (opacidad), 
+* con un retraso de 0.5s.
+*/
+.botonesEntrada { animation: fadeIn 1s ease-out 0.5s forwards; }
+/* 
+*  Imagen principal: aparece deslizándose desde la derecha, 
+*  con un retraso de 0.4s.
+*/
+.imagenPrincipal { animation: slideInRight 1s ease-out 0.4s forwards; }
+/* 
+*  Texto con fondo negro: aparece desde abajo.
+*/
+.textoNegra { animation: desde-abajo 0.8s ease-out 0.3s forwards; }
+/* 
+*  Texto con fondo blanco: aparece desde arriba.
+*/
+.textoBlanca { animation: desde-arriba 0.8s ease-out 0.3s forwards; }
+/* 
+*  Hoja decorativa 1: desliza desde la izquierda con desplazamiento inicial.
+*/
+.hoja1 { transform: translateX(-40px); animation: slideInLeft 1.2s ease-out 0.7s forwards; }
+/* 
+*  Hoja decorativa 2: desliza desde arriba con desplazamiento inicial.
+*/
+.hoja2 { transform: translateY(-40px); animation: slideInTop 1.2s ease-out 0.9s forwards; }
+/* 
+*  Producto en miniatura: entra con zoom y opacidad creciente.
+*/
+.productoPeq { transform: scale(0.8); animation: zoomIn 1s ease-out 1s forwards; }
+/* 
+*  Miniaturas adicionales: aparecen suavemente.
+*/
+.miniaturasEntrada { animation: fadeIn 1.2s ease-out 1.1s forwards; }
+/* 
+*  Clase para salida (ocultamiento): reduce opacidad y escala.
+*/
+.salida { animation: desaparecer 0.5s ease-in forwards; }
+/* 
+*  Desde arriba hacia su posición original
+*/
+@keyframes slideInTop {
+    0% { opacity: 0; transform: translateY(-40px); }
+    100% { opacity: 0.7; transform: translateY(0); }
+}
+/* 
+*  Entrada desde abajo (solo opacidad)
+*/
+@keyframes slideInBottom {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* 
+*  Entrada desde la izquierda
+*/
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-40px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+/* 
+*  Entrada desde la derecha (solo opacidad)
+*/
+@keyframes slideInRight {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* 
+*  Zoom de entrada con opacidad
+*/
+@keyframes zoomIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+/* 
+*  Fundido de entrada (fade in)
+*/
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* 
+*  Entrada desde abajo con opacidad (sin desplazamiento)
+*/
+@keyframes desde-abajo {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* 
+*  Entrada desde arriba con opacidad (sin desplazamiento)
+*/
+@keyframes desde-arriba {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* 
+*  Animación de salida: reduce opacidad y escala del elemento
+*/
+@keyframes desaparecer {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@media (max-width: 1024px) {
+    .slide {
+        padding: 30px 60px;
+    }
+
+    .info h1 { font-size: 40px; }
+    .info h4 { font-size: 20px; }
+
+    .imagen img,
+    .textoVerticalNegro,
+    .textoVerticalBlanco,
+    .hojaNegra,
+    .hojaVerde {
+        visibility: hidden;
+    }
+
+    .prodPeq {
+        right: 200%;
+        margin-top: -10%;
+    }
+
+    .botones button {
+        font-size: 15px;
+        padding: 10px 22px;
+        margin-left: -120px;
+    }
+
+    .miniaturas {
+        left: 5%;
+        top: 85%;
+    }
+}

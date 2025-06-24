@@ -1,0 +1,135 @@
+.productos-wrapper {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1rem;
+  background: #fffdf4;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nuevo-producto-btn {
+  background-color: #4c6b3c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.nuevo-producto-btn:hover {
+  background-color: #39502b;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+.productos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: white;
+}
+
+.productos-tabla th,
+.productos-tabla td {
+  padding: 0.75rem 1rem;
+  border-bottom: 5px solid #1b1a1a;
+  vertical-align: middle;
+}
+
+.productos-tabla tbody td {
+  border-bottom: 3px solid #272525;
+}
+
+.productos-tabla thead {
+  background-color: #f3f3f3;
+}
+
+.productos-tabla tbody tr:hover {
+  background-color: #fafafa;
+  
+}
+
+.productos-tabla th:nth-child(2),
+.productos-tabla td:nth-child(2) {
+  text-align: right;
+}
+
+.productos-tabla th:nth-child(3),
+.productos-tabla td:nth-child(3) {
+  text-align: center;
+}
+
+.productos-tabla th:nth-child(4),
+.productos-tabla td:nth-child(4) {
+  text-align: right;
+}
+
+.btn-editar,
+.btn-eliminar {
+  background-color: #eeeeee;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+.btn-editar:hover {
+  background-color: #d5e9d5;
+}
+
+.btn-eliminar:hover {
+  background-color: #f7cccc;
+}
+
+.alerta {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  color: #fff;
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.alerta-success { background-color: #198754; }
+.alerta-error   { background-color: #dc3545; }
+.alerta-info    { background-color: #0dcaf0; }
+
+.cerrar {
+  margin-left: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.botones-navegacion {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botones-navegacion button {
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 2rem;;
+    border: none;
+    border-radius: 6px;
+    background-color: #4c6b3c; 
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botones-navegacion button:hover {
+    background-color: #39502b;
+    transform: scale(1.05);
+}

@@ -1,0 +1,654 @@
+/*
+ * *: Aplica a todos los elementos del documento.
+ * margin: 0; - elimina el margen por defecto.
+ * padding: 0; - elimina el relleno por defecto.
+ * box-sizing: border-box; - incluye el padding y el borde dentro del ancho y alto del elemento.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+ * html, body: selecciona ambos elementos para aplicar estilos comunes.
+ * height: 100%; - hace que ocupen todo el alto de la ventana.
+ * font-family: "Jacques Francois Shadow", serif; - define la tipografía principal del sitio.
+ */
+html, body {
+    height: 100%;
+    font-family: "Jacques Francois Shadow", serif;
+}
+
+/*
+ * .navbar: clase que aplica al encabezado principal del sitio.
+ * background-color: color de fondo del header.
+ * height: altura fija.
+ * display: flex; - disposición horizontal de los hijos.
+ * align-items: center; - alineación vertical centrada.
+ * justify-content: space-between; - distribuye elementos al inicio y al final.
+ * padding: espacio interno horizontal de 30px.
+ */
+.navbar {
+    background-color: #32402F;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+/*
+ * .leftSection: contenedor de elementos del lado izquierdo.
+ * display: flex; - distribución en fila.
+ * align-items: center; - centra verticalmente.
+ * gap: 10px; - espacio entre hijos.
+ */
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*
+ * #vector: id aplicado al ícono del menú.
+ * width: tamaño fijo de 30px de ancho.
+ */
+#vector {
+    width: 30px;
+}
+
+/*
+ * .logo: clase para el logo de la empresa.
+ * width: ancho del logo.
+ * height: automático para mantener proporción.
+ * position: relative; - permite ajustar posición manual.
+ * top: -4px; - mueve el logo ligeramente hacia arriba.
+ */
+.logo {
+    width: 90px;
+    height: auto;
+    position: relative;
+    top: -4px;
+}   
+
+/*
+ * .name: clase para el nombre junto al logo.
+ * color: color dorado.
+ * font-size: tamaño de fuente.
+ * font-family: misma tipografía decorativa.
+ */
+.name {
+    color: #C6A256;
+    font-size: 28px;
+    font-family: "Jacques Francois Shadow", serif;
+}
+
+/*
+ * .rightSection: parte derecha del header.
+ * display: flex; - alinea horizontal.
+ * align-items: center; - centra verticalmente.
+ * gap: 20px; - separación entre elementos.
+ */
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/*
+ * .btn: estilo general para botones.
+ * background-color: verde principal.
+ * color: texto blanco.
+ * border: sin borde.
+ * padding: espacio interno.
+ * border-radius: esquinas redondeadas.
+ * font-size: tamaño del texto.
+ * cursor: puntero al pasar por encima.
+ * transition: animación suave al cambiar color.
+ * display: flex; - permite alinear ícono y texto.
+ * align-items: center; - alineación vertical.
+ * gap: espacio entre ícono y texto.
+ * font-family: mantiene estilo decorativo.
+ */
+.btn {
+    background-color: #47AC22;
+    color: white;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Jacques Francois Shadow", serif;
+}
+
+/*
+ * .btn:hover: cuando el cursor pasa sobre el botón.
+ * background-color: color más oscuro para indicar interacción.
+ */
+.btn:hover {
+    background-color: #369117;
+}
+
+/*
+ * #carro: ícono del carrito.
+ * width, height: dimensiones del ícono.
+ * cursor: puntero indica que es clickeable.
+ */
+#carro {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/*
+ * .linea: separador horizontal visual.
+ * width: 100%; - ancho completo.
+ * height: grosor de 2px.
+ * background-color: negro.
+ */
+.linea {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+/*
+ * .footer: pie de página.
+ * background-color: fondo oscuro.
+ * color: texto blanco.
+ * padding: relleno alrededor.
+ * font-size: texto más pequeño.
+ * font-family: misma fuente decorativa.
+ */
+.footer {
+    background-color: #32402F;
+    color: white;
+    padding: 1px 5px 0;
+    font-size: 13px;
+    font-family: "Jacques Francois Shadow", serif;
+}
+
+/*
+ * .footerContent: contenedor de secciones del footer.
+ * display: flex; - diseño en fila.
+ * flex-wrap: permite saltar a nueva línea si no cabe.
+ * justify-content: separación entre secciones.
+ * gap: espacio entre ellas.
+ */
+.footerContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/*
+ * .footerSection: estilo de cada sección del footer.
+ * flex: 1; - ocupa el mismo espacio que otras secciones flex.
+ * min-width: 5px; - tamaño mínimo para que no se colapse en pantallas pequeñas.
+ */
+.footerSection {
+    flex: 1;
+    min-width: 5px;
+}
+
+/*
+ * .footerSection h3, h4: títulos dentro del footer.
+ * margin-bottom: 6px; - separación con el contenido siguiente.
+ * font-size: 14px; - tamaño de fuente para subtítulos.
+ * color: #C6A256; - color dorado.
+ */
+.footerSection h3,
+.footerSection h4 {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #C6A256;
+}
+
+/*
+ * .footerSection ul: lista sin estilos por defecto.
+ * list-style: none; - sin viñetas.
+ * padding: 0; - elimina espacio interior por defecto.
+ */
+.footerSection ul {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+ * .footerSection ul li: elementos de la lista.
+ * margin-bottom: 5px; - separación entre enlaces.
+ */
+.footerSection ul li {
+    margin-bottom: 5px;
+}
+
+/*
+ * .footerSection ul li a: enlaces del footer.
+ * color: white; - texto blanco.
+ * text-decoration: none; - sin subrayado.
+ * transition: color 0.3s ease; - transición suave de color al pasar el ratón.
+ */
+.footerSection ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/*
+ * .footerSection ul li a:hover: cambio de color al pasar el ratón.
+ * color: #C6A256; - color dorado al hacer hover.
+ */
+.footerSection ul li a:hover {
+    color: #C6A256;
+}
+
+/*
+ * .footerSection .socials a img: estilo para íconos de redes.
+ * width: 20px; - tamaño del ícono.
+ * margin-right: 8px; - espacio entre íconos.
+ */
+.footerSection .socials a img {
+    width: 20px;
+    margin-right: 8px;
+}
+
+/*
+ * .footerSection .socials a img:hover: agranda íconos ligeramente al pasar.
+ * transform: scale(1.1); - efecto de escala.
+ */
+.footerSection .socials a img:hover {
+    transform: scale(1.1);
+}
+
+/*
+ * .footerBottom: parte inferior del footer.
+ * margin-top: 15px; - separación con el contenido superior.
+ * padding-top: 8px; - relleno superior.
+ * font-size: 10px; - texto pequeño.
+ */
+.footerBottom {
+    margin-top: 15px;
+    padding-top: 8px;
+    font-size: 10px;
+}
+
+/*
+ * .menuBtn: botón del menú lateral.
+ * background: none; - sin fondo.
+ * border: none; - sin borde.
+ * cursor: pointer; - cursor de mano.
+ * padding: 8px; - relleno interno.
+ */
+.menuBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/*
+ * .menuBtn img: ícono del botón de menú.
+ * width/height: dimensiones del ícono.
+ */
+.menuBtn img {
+    width: 24px;
+    height: 24px;
+}
+
+/*
+ * .menuLateral: contenedor lateral desplegable.
+ * position: absolute; - se posiciona relativo al contenedor.
+ * top/left: posición en la pantalla.
+ * background-color: fondo claro.
+ * border-right: línea divisoria a la derecha.
+ * width: ancho del panel.
+ * z-index: prioridad sobre otros elementos.
+ * box-shadow: sombra para profundidad.
+ */
+.menuLateral {
+    position: absolute;
+    top: 70px;
+    left: 9px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #ccc;
+    width: 200px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+/*
+ * .menuLista: lista sin márgenes ni padding.
+ */
+.menuLista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * .menuLista li: ítems del menú.
+ * padding: espacio interno.
+ * border-bottom: línea divisoria.
+ * cursor: pointer; - indica que es clickeable.
+ */
+.menuLista li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/*
+ * .menuLista li.activo: ítem activo o seleccionado.
+ * background-color: color diferente.
+ * border-left: indicador visual del lado izquierdo.
+ */
+.menuLista li.activo {
+    background-color: #eaeaea;
+    border-left: 4px solid black;
+}
+
+/*
+ * .menuLista li a: enlaces del menú.
+ * text-decoration: none; - sin subrayado.
+ * color: inherit; - toma el color del padre.
+ * display: block; - ocupa todo el ancho.
+ * width: 100%; - asegura el ancho completo.
+ */
+.menuLista li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+/*
+ * .menuLista li:hover: cambia el fondo al pasar el cursor.
+ */
+.menuLista li:hover {
+    background-color: #eaeaea;
+}
+
+/*
+ * .zonaClienteContainer: contenedor del botón de clientes.
+ * position: relative; - necesario para posicionar el dropdown en relación a este contenedor.
+ */
+.zonaClienteContainer {
+    position: relative;
+}
+
+/*
+ * .clientDropdown: menú desplegable de clientes.
+ * position: absolute; - se posiciona respecto al contenedor padre.
+ * top: 50px; - separación desde la parte superior del contenedor padre.
+ * right: 20px; - separación desde la derecha.
+ * background-color: fondo claro del dropdown.
+ * border: borde gris claro.
+ * z-index: 4; - para superponer sobre otros elementos.
+ * box-shadow: sombra sutil para profundidad.
+ */
+.clientDropdown {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    z-index: 4;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/*
+ * Elimina viñetas y márgenes por defecto de la lista dentro del dropdown.
+ */
+.clientDropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Estilo de cada ítem del dropdown.
+ * padding: espacio interno.
+ * cursor: pointer; - cambia el cursor para indicar interactividad.
+ * transition: animación suave del fondo.
+ * border-bottom: separación visual entre elementos.
+ */
+.clientDropdown li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #ddd;
+}
+
+/*
+ * Hover sobre elementos del dropdown: cambia el fondo para resaltar.
+ */
+.clientDropdown li:hover {
+    background-color: #eaeaea;
+}
+
+/*
+ * .hidden: clase reutilizable para ocultar elementos.
+ */
+.hidden {
+    display: none;
+}
+
+/*
+ * .login-overlay: capa que cubre toda la pantalla para mostrar el login.
+ * position: fixed; - se mantiene visible aunque se haga scroll.
+ * bottom / left: posicionamiento desde la parte inferior e izquierda.
+ * width / height: ocupa toda la pantalla.
+ * z-index: 1000; - aseguramos que esté por encima del resto.
+ */
+.login-overlay {
+    position: fixed;
+    bottom: 10%;
+    left: 30%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+}
+
+/*
+ * .carrito-lateral: panel lateral para mostrar el carrito.
+ * position: fixed; - posición fija al hacer scroll.
+ * top / right: se ubica en la esquina superior derecha.
+ * width / height: dimensiones del panel.
+ * background: color blanco.
+ * box-shadow: sombra a la izquierda del panel.
+ * z-index: 1000; - aparece por encima de otros elementos.
+ * transform: desplazado hacia la derecha para estar oculto por defecto.
+ * transition: animación del desplazamiento.
+ * display / flex-direction: diseño vertical interno.
+ * padding: espacio interno.
+ */
+.carrito-lateral {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/*
+ * .carrito-lateral.mostrar: clase activa para mostrar el panel.
+ * transform: lo mueve a su lugar visible.
+ */
+.carrito-lateral.mostrar {
+    transform: translateX(0);
+}
+
+/*
+ * .carrito-lateral.hidden: asegura que se mantenga oculto.
+ */
+.carrito-lateral.hidden {
+    transform: translateX(100%);
+}
+
+/*
+ * .carrito-header: encabezado del panel del carrito.
+ * display: flex; - diseño horizontal.
+ * justify-content: espacio entre título y botón de cerrar.
+ * align-items: centra verticalmente.
+ * border-bottom: línea separadora.
+ */
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/*
+ * .carrito-items: lista de productos en el carrito.
+ * flex: permite que crezca con el espacio disponible.
+ * overflow-y: permite scroll vertical si hay muchos productos.
+ * margin-top: separación del encabezado.
+ */
+.carrito-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+/*
+ * .carrito-resumen: sección inferior con subtotal, total, etc.
+ * border-top: línea separadora.
+ * padding-top: espacio superior.
+ */
+.carrito-resumen {
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+}
+
+/*
+ * .btn-carrito: botones dentro del resumen del carrito.
+ * width: ocupa todo el ancho.
+ * padding: espacio interno.
+ * border / border-radius: sin borde y esquinas redondeadas.
+ * margin-top: separación entre botones.
+ * cursor: cambia al pasar el mouse.
+ */
+.btn-carrito {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+/*
+ * .btn-carrito.verde: estilo del botón "Ir al carrito".
+ */
+.btn-carrito.verde {
+    background: #a3d977;
+    color: #000;
+}
+
+/*
+ * .btn-carrito.oscuro: estilo del botón "Comprar ahora".
+ */
+.btn-carrito.oscuro {
+    background: #4c6b3c;
+    color: #fff;
+}
+
+/*
+ * .cerrar-btn: botón de cierre del carrito.
+ * background / border: sin fondo ni borde.
+ * font-size: más grande para visibilidad.
+ * cursor: puntero para interacción.
+ */
+.cerrar-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/*
+ * .carrito-wrapper: contenedor del ícono del carrito.
+ * position: relative; - para posicionar el contador sobre el ícono.
+ * display: inline-block; - mantiene el tamaño justo del ícono.
+ */
+.carrito-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/*
+ * .carrito-contador: burbuja con el número de productos.
+ * position: absolute; - se coloca encima del ícono.
+ * top / right: ajuste fino de posición.
+ * background: color rojo llamativo.
+ * color: texto blanco.
+ * font-size: texto pequeño.
+ * border-radius: hace forma de círculo.
+ * width / height: tamaño fijo.
+ * display: flex; - centra el número dentro.
+ * align-items / justify-content: centra contenido.
+ * font-weight: en negrita.
+ */
+.carrito-contador {
+    position: absolute;
+    top: -8px;
+    right: 1px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/*
+ * Oculta el contador del carrito si está vacío.
+ */
+.contador-carro.hidden {
+    display: none;
+}
+
+/*
+ * Clases para ocultar el footer en algunas páginas.
+ */
+.footer--espaciado-tienda {
+    visibility: hidden;
+}
+
+.footer--espaciado-empresa {
+    visibility: hidden;
+}
+
+/*
+ * Media query para pantallas pequeñas (menores a 1024px).
+ * Ajusta posición del login-overlay para móviles/tablets.
+ */
+@media (max-width: 1024px) {
+    .login-overlay {
+        position: fixed;
+        bottom: 0;
+        left: 10%;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1000;
+    }
+}

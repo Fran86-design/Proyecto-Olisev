@@ -1,0 +1,16 @@
+.gracias-container {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 500px;
+  font-family: sans-serif;
+}
+
+.gracias-container button {
+  margin-top: 1rem;
+  background: #39502b;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

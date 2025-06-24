@@ -1,0 +1,51 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+
+<div class="form-wrapper">
+    <h2>Nuevo Producto</h2>
+    <form id="formularioProducto" (submit)="crearProducto($event)">
+    
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" name="nombre" required />
+
+        <label for="precio">Precio:</label>
+        <input id="precio" type="number" name="precio" step="0.01" required />
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+
+        <label for="descuento">Descuento (%):</label>
+        <input id="descuento" type="number" name="descuento" min="0" max="100" />
+
+        <label>
+            <input type="checkbox" name="visible" /> Visible en la tienda
+        </label>
+
+        <label for="imagen">Imagen:</label>
+        <input id="imagen" type="file" name="imagen" accept="image/*" (change)="previsualizarImagen($event)" />
+
+        <div class="imagen-preview">
+            <p>Previsualización:</p>
+            <img id="previewImagen" src="" alt="Previsualización" style="display: none;" />
+        </div>
+
+        <button type="submit">Crear producto</button>
+    </form>
+
+    <div class="botones-acciones">
+        <button type="button" (click)="cancelarImagen()">Cancelar imagen</button>
+        <button type="button" (click)="volverAtras()">Volver atrás</button>
+        <button type="button" (click)="irZonaPrivada()">Zona Privada</button>
+    </div>
+</div>
+
+@if (alerta.visible) {
+    <div class="alerta alerta-{{ alerta.tipo }}">
+        <span class="cerrar" (click)="alerta.visible = false">×</span>
+        {{ alerta.mensaje }}
+    </div>
+}

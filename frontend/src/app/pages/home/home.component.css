@@ -1,0 +1,85 @@
+.container {
+    background-image: url('/home/arbol_1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: calc(85.6vh - 90px); 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+}
+
+.lineas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.lineas::before,
+.lineas::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: white;
+}
+
+.lineas span {
+    font-size: 32px;
+    font-family: "Jacques Francois Shadow", serif;
+    color: white;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title span {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+@keyframes caer {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lineas {
+    animation: caer 1s ease forwards;
+}
+
+.title {
+    opacity: 0;
+    animation: aparecer 1s ease 1.5s forwards;
+}

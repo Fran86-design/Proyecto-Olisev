@@ -1,0 +1,15 @@
+<!-- 
+<router-outlet> es un componente de Angular que actúa como punto de inserción dinámico 
+para cargar componentes según la ruta actual del router.
+Cuando se navega a una ruta, Angular inserta el componente asociado aquí.
+-->
+<router-outlet />
+<!-- 
+Este <div> contiene el componente <app-chatbox>, pero solo se muestra 
+si la función showChatbox() devuelve true.
+La propiedad [style.display] controla su visibilidad con CSS: 
+block para mostrarlo, none para ocultarlo.
+-->
+<div [style.display]="showChatbox() ? 'block' : 'none'">
+    <app-chatbox></app-chatbox>
+</div>

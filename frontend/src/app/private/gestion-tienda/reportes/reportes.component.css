@@ -1,0 +1,247 @@
+body {
+  background-color: #f4f7f3;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2f2f2f;
+  margin: 0;
+  padding: 0;
+}
+
+.titulo-pagina {
+  text-align: center;
+  font-size: 2.4rem;
+  margin: 2rem 0 1rem;
+  color: #3a5a40;
+  font-weight: 700;
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px;
+}
+
+.report-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  border: 1px solid #d4af37;
+  transition: transform 0.2s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-6px);
+}
+
+.card-header {
+  background: #3a5a40;
+  color: #ffffff;
+  padding: 16px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1rem;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-body button,
+.acciones-modal button,
+.botones-navegacion button,
+.archivos-anuales button,
+dialog button {
+  background-color: #d4af37;
+  color: #2f2f2f;
+  border: none;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.card-body button:hover,
+.botones-navegacion button:hover,
+.archivos-anuales button:hover,
+dialog button:hover {
+  background-color: #b9962e;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+dialog {
+  background: #ffffff;
+  padding: 28px;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  max-width: 90%;
+  width: 640px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+dialog h2,
+dialog h3 {
+  color: #3a5a40;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #d4af37;
+  padding-bottom: 8px;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  margin: 1rem auto;
+  border: 1px solid #d4af37;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #d4af37;
+  color: #333;
+}
+
+dialog table,
+.tabla-movimientos,
+.detalle-resumen table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detalle-anual-seccion {
+  background-color: #fdfdfb;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.detalle-anual-seccion h4 {
+  font-size: 1.1rem;
+  color: #3a5a40;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.mes {
+  margin-bottom: 1.5rem;
+}
+
+.mes h4 {
+  margin-bottom: 0.5rem;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  color: #3a5a40;
+  font-size: 1rem;
+}
+
+.archivos-anuales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.archivos-anuales button {
+  background-color: #3a5a40;
+  color: white;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+}
+
+.archivos-anuales button:hover {
+  background-color: #2e4b30;
+}
+
+.filtro-movimientos {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filtro-movimientos select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-weight: 500;
+}
+
+/* ===== BOTONES NAVEGACIÓN ===== */
+.botones-navegacion {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.botones-navegacion button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3a5a40;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.botones-navegacion button:hover {
+  background-color: #2d4031;
+}
+
+.acciones-modal {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid #d4af37;
+  display: flex;
+  justify-content: center;
+}
+
+.botones-navegacion {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botones-navegacion button {
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 2rem;;
+    border: none;
+    border-radius: 6px;
+    background-color: #4c6b3c; 
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botones-navegacion button:hover {
+    background-color: #39502b;
+    transform: scale(1.05);
+}

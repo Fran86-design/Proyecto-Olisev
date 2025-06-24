@@ -1,0 +1,56 @@
+<!-- Solo se muestra todo lo siguiente si ya se evaluó el acceso y está permitido -->
+@if (accesoEvaluado && accesoPermitido) {
+<div class="header vidrio blur">
+  <!-- Bienvenida personalizada usando el nombre del usuario logueado -->
+  <h2 class="titulo bienvenida">Bienvenid&#64; {{ usuario?.nombre }}</h2>
+  <button (click)="cerrarSesion()" class="boton-salida aura">Cerrar sesión</button>
+</div>
+<!-- Recorre cada campaña del array `campanias()` con el bucle @for -->
+@for (campana of campanias(); track campana) {
+  <section class="campana tarjeta-glass animar">
+    <div class="cabecera-campana cabecera-elevada">
+      <h3 class="nombre-campana neon-titulo">📁 Campaña {{ campana }}</h3>
+      <!-- Botón que alterna la visibilidad del contenido de la campaña -->
+      <button (click)="alternarVisible(campana)" class="boton-toggle onda">
+        <!-- Si está abierta, muestra "Cerrar"; si no, "Abrir" -->
+        {{ campanasAbiertas().has(campana) ? 'Cerrar' : ' Abrir ' }}
+      </button>
+    </div>
+    <!-- Solo se muestra el contenido si la campaña está marcada como "abierta" en el Set, .has() verifica si un valor está presente dentro del set -->
+    @if (campanasAbiertas().has(campana)) {
+      <div class="tabla-container fade-glass">
+        <table class="tabla-campana tabla-diamante">
+          <thead>
+            <tr>
+              <th>Variedad</th>
+              <th>Tipo</th>
+              <th>Kilos</th>
+              <th>Lote</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Itera sobre las entradas de esta campaña -->
+            @for (entrada of entradasPorCampania()[campana]; track entrada.id) {
+              <tr>
+                <td>{{ entrada.variedad }}</td>
+                <td>{{ entrada.tipo }}</td>
+                <td>{{ entrada.kilos }}</td>
+                <td>{{ entrada.lote }}</td>
+                <td>{{ entrada.fechaEntrada }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+}
+}
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}

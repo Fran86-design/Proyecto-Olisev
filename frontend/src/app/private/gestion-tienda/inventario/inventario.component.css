@@ -1,0 +1,227 @@
+/* 
+    :host es un selector especial de Angular que aplica estilos 
+    al elemento raíz del componente (por ejemplo, <app-inventario>). 
+    Este bloque define el diseño base del componente: 
+    lo hace un bloque visible, añade padding, establece la fuente, 
+    un color de fondo claro y un color de texto verde oscuro.
+*/
+
+host {
+    display: block;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f6f4;
+    color: #2e7d32;
+}
+
+
+.tabla-contenedor {
+    overflow-x: auto;
+    border-radius: 12px;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-inventario {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #d0e6d0;
+}
+
+.tabla-inventario thead {
+    background-color: #2e7d32; 
+    color: white;
+}
+
+
+
+.menu-hamburguesa {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu-acciones {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 4px 0;
+    min-width: 120px;
+}
+
+.menu-lateral {
+    left: 110%; 
+    top: -140%;
+}
+
+.menu-acciones li {
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.menu-acciones li:hover {
+    background-color: #e6ffe6; 
+}
+
+.botones-navegacion {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botones-navegacion button {
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 2rem;;
+    border: none;
+    border-radius: 6px;
+    background-color: #4c6b3c; 
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botones-navegacion button:hover {
+    background-color: #39502b;
+    transform: scale(1.05);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal h3 {
+    margin-top: 0;
+    color: #2e7d32;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.modal input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.modal-actions button:first-child {
+    background: #d4af37;
+    color: white;
+}
+
+.modal-actions button:first-child:hover {
+    background: #b8860b;
+}
+
+.modal-actions button:last-child {
+    background: #ccc;
+}
+
+.modal-actions button:last-child:hover {
+    background: #aaa;
+}
+
+.filtro-categoria {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filtro-categoria select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.aviso-stock-bajo {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.alerta {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    color: #fff;
+    animation: fadeIn 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.alerta-success { background-color: #198754; }
+.alerta-error   { background-color: #dc3545; }
+.alerta-info    { background-color: #0dcaf0; }
+
+.cerrar {
+    margin-left: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}

@@ -1,0 +1,101 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<div class="acciones-superiores">
+  <button class="btn-accion" (click)="marcarComoEnviadoPedido()">Marcar como Enviado</button>
+  <button class="btn-accion" (click)="descargarPDFPedido()">Descargar PDF</button>
+  <button class="btn-accion" (click)="editarPedido()">Editar</button>
+  <button class="btn-accion" (click)="eliminarPedido()">Eliminar</button>
+</div>
+
+<table class="tabla-pedidos">
+  <thead>
+    <tr>
+      <th>✔</th>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Total</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (pedido of pedidos; track pedido.id) {
+      <tr>
+        <td>
+          <input
+            type="radio"
+            name="seleccion"
+            (click)="toggleSeleccionPedido(pedido.id)"
+            [checked]="pedidoSeleccionadoId === pedido.id"
+          />
+        </td>
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.nombreCliente }}</td>
+        <td>{{ pedido.fechaPedido }}</td>
+        <td>{{ pedido.total.toFixed(2) }} €</td>
+        <td>
+          <span class="etiqueta" [class.enviado]="pedido.enviado" [class.pendiente]="!pedido.enviado">
+            {{ pedido.enviado ? '📦 Enviado' : '📪 Pendiente' }}
+          </span>
+        </td>
+        <td>
+          <button (click)="generarFactura(pedido.id)">📑 Generar Factura</button>
+        </td>
+      </tr>
+    
+      @if (pedidoSeleccionadoId === pedido.id && !pedidoParaEditar) {
+        <tr>
+          <td colspan="7">
+            <div class="detalles-pedido">
+              <h3>Detalles Pedido #{{ pedido.id }}</h3>
+              <p><strong>Dirección:</strong> {{ pedido.direccion }}</p>
+              <p><strong>Email:</strong> {{ pedido.email }}</p>
+              <p><strong>Teléfono:</strong> {{ pedido.telefono }}</p>
+              <p><strong>Total:</strong> {{ pedido.total.toFixed(2) }} €</p>
+              <ul>
+                @for (linea of pedido.lineas; track linea.nombreProducto) {
+                  <li>{{ linea.nombreProducto }} – {{ linea.cantidad }} x {{ linea.precioUnitario.toFixed(2) }} €</li>
+                }
+              </ul>
+              <button (click)="cerrarDetalles()">❌ Cerrar</button>
+            </div>
+          </td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+
+<div class="botones-navegacion">
+  <button class="btn-navegacion" (click)="irAGestionTienda()">Gestión Tienda</button>
+  <button class="btn-navegacion" (click)="irAZonaPrivada()">Zona Privada</button>
+</div>
+
+<aside class="sidebar">
+  <h3>📁 Archivos por año</h3>
+  <ul>
+    @for (anio of archivos; track anio) {
+      <li>
+        <button (click)="cargarPedidos(anio)">📅 {{ anio }}</button>
+        <button class="borrar" (click)="eliminarArchivo(anio)">❌</button>
+      </li>
+    }
+  </ul>
+  <button class="crear-anio" (click)="crearArchivoNuevoAnio()">➕ Crear nuevo año</button>
+  @if (typeof filtroActual === 'number') {
+    <button class="cerrar-archivo" (click)="cerrarArchivo()">
+      Volver a pendientes
+    </button>
+  }
+</aside>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}

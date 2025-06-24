@@ -1,0 +1,161 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<h2 class="titulo">📋 Gestión de Clientes</h2>
+
+<div class="tabla-contenedor">
+  <table class="tabla-clientes">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (cliente of clientes(); track cliente.email) {
+        <tr>
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.telefono || '—' }}</td>
+          <td class="acciones">
+            <button class="btn accion" (click)="abrirModal('pedidos', cliente)">📦 Pedidos</button>
+            <button class="btn accion" (click)="abrirModal('facturas', cliente)">📄 Facturas</button>
+            <button class="btn editar" (click)="abrirModal('editar', cliente)">✏️ Editar</button>
+            <button class="btn eliminar" (click)="eliminarCliente(cliente)">🗑️ Eliminar</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+@if (modalAbierto()) {
+  <div class="modal">
+    <div class="modal-contenido">
+      <button class="cerrar" (click)="cerrarModal()">✖</button>
+
+      @if (modalTipo() === 'pedidos') {
+        <h3>📦 Pedidos de {{ clienteActivo()?.nombre }}</h3>
+        @if (clienteActivo()?.pedidos?.length > 0) {
+          <table class="tabla-modal">
+            <thead>
+              <tr>
+                <th>Dirección</th>
+                <th>Productos</th>
+                <th>Total (€)</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of clienteActivo()?.pedidos; track p.id) {
+                <tr>
+                  <td>{{ p.direccion }}</td>
+                  <td>{{ p.detalles.length }}</td>
+                  <td>{{ calcularTotal(p) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p>Este cliente no tiene pedidos.</p>
+        }
+      }
+
+      @if (modalTipo() === 'facturas') {
+        <h3>📄 Facturas de {{ clienteActivo()?.nombre }}</h3>
+        @if (clienteActivo()?.pedidos?.length > 0) {
+          <table class="tabla-modal">
+            <thead>
+              <tr>
+                <th>ID Pedido</th>
+                <th>Dirección</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Descargar</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (pedido of clienteActivo()?.pedidos; track pedido.id) {
+                <tr>
+                  <td>{{ pedido.id }}</td>
+                  <td>{{ pedido.direccion }}</td>
+                  <td>{{ pedido.fechaPedido }}</td>
+                  <td>{{ calcularTotal(pedido) }} €</td>
+                  <td>
+                    <button (click)="descargarFacturas(pedido)">PDF</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p>❌ Este cliente no tiene facturas disponibles.</p>
+        }
+      }
+
+      @if (modalTipo() === 'editar') {
+        <h3>✏️ Editar Cliente</h3>
+        <form class="formulario" (submit)="guardarCambios(); $event.preventDefault()">
+          <div class="grupo-formulario">
+            <label for="nombre">👤 Nombre</label>
+            <input
+            id="nombre"
+            type="text"
+            class="campo"
+            [value]="clienteActivo()?.nombre"
+            (input)="clienteActivo().nombre = obtenerValor($event)"
+            placeholder="Nombre completo"
+            required
+            />
+          </div>
+
+          <div class="grupo-formulario">
+            <label for="email">📧 Email</label>
+            <input
+            id="email"
+            type="email"
+            class="campo"
+            [value]="clienteActivo()?.email"
+            (input)="clienteActivo().email = obtenerValor($event)"
+            placeholder="Correo electrónico"
+            required
+            />
+          </div>
+
+          <div class="grupo-formulario">
+            <label for="telefono">📞 Teléfono</label>
+            <input
+            id="telefono"
+            type="text"
+            class="campo"
+            [value]="clienteActivo()?.telefono"
+            (input)="clienteActivo().telefono = obtenerValor($event)"
+            placeholder="Teléfono"
+            />
+          </div>
+
+          <div class="acciones-modal">
+            <button type="submit" class="btn-guardar">💾 Guardar</button>
+            <button type="button" class="btn-cancelar" (click)="cerrarModal()">Cancelar</button>
+          </div>
+        </form>
+      }
+    </div>
+  </div>
+}
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}
+
+
+<div class="botones-navegacion">
+  <button (click)="irAZonaPrivada()"> Volver a Zona Privada</button>
+</div>

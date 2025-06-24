@@ -1,0 +1,51 @@
+<div class="contacto-wrapper">
+    <div class="form-section">
+        <h2>Ponte en contacto</h2>
+        <p>¿Tienes dudas sobre nuestros productos del campo o quieres colaborar?</p>
+    
+        <form>
+            <div class="campo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Escribe tu nombre" required />
+            </div>
+
+            <div class="campo">
+                <label for="email">Correo</label>
+                <input type="email" id="email" placeholder="ejemplo@correo.com" required />
+            </div>
+
+            <div class="campo">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" placeholder="Tu mensaje..." required></textarea>
+            </div>
+
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </div>
+
+    <div class="info-section">
+        <div class="info-box">
+            <h3>🏡 Dirección</h3>
+            <p>Calle Feria, 12<br>41003 Sevilla, España</p>
+
+            <h3>📞 Teléfono</h3>
+            <p>+34 955 12 34 56</p>
+
+            <h3>🕒 Horario</h3>
+            <p>Lunes a Viernes: 9:00 - 17:00<br>Sábados y Domingos: Cerrado</p>
+        </div>
+
+        <div class="mapa-container">
+            <!-- 
+            iFrame que incrusta un mapa de Google Maps.
+            El enlace contiene coordenadas específicas para mostrar una ubicación concreta (Calle Feria, Sevilla).
+            -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.762386097813!2d-5.990077384692507!3d37.400481679831315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126dd42266aa5b%3A0xa993ded82a6bfa77!2sCalle%20Feria%2C%2041003%20Sevilla!5e0!3m2!1ses!2ses!4v1717422000000!5m2!1ses!2ses"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+        </div>
+    </div>
+</div>

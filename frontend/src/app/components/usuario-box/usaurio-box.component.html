@@ -1,0 +1,10 @@
+<div class="usuario-box">
+    <!-- Línea que muestra el nombre del usuario actual precedido por un ícono -->
+    <!-- {{ nombre }} proviene del componente y representa el nombre del usuario logueado -->
+    <p>👤 Usuario:{{ nombre }}</p>
+    <!-- Línea que muestra el tiempo de conexión del usuario -->
+    <!-- {{ tiempoConexion }} es una cadena en formato HH:mm:ss actualizada automáticamente -->
+    <p>🕒 Tiempo de conexión: {{ tiempoConexion }}</p>
+    <!-- Al hacer clic se ejecuta el método cerrarSesion() en el componente -->
+    <button class="cerrar-sesion-btn" (click)="cerrarSesion()">Cerrar sesión</button>
+</div>

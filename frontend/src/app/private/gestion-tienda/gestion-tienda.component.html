@@ -1,0 +1,40 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+
+<div class="volver">
+    <button (click)="volver()">← Volver</button>
+</div>
+
+
+<div class="tarjetas-grid">
+    <div class="tarjeta" routerLink="/gestion-tienda/productos">
+        <img src="/gestionTienda/productos_tienda.png" alt="Productos">
+        <span>Productos</span>
+    </div>
+
+    <div class="tarjeta" routerLink="/gestion-tienda/gestion-pedidos">
+        <img src="/gestionTienda/pedidos_tienda.png" alt="Pedidos">
+        <span>Pedidos</span>
+    </div>
+
+    <div class="tarjeta" routerLink="/gestion-tienda/reportes">
+        <img src="/gestionTienda/reportes_tienda.png" alt="Reportes">
+        <span>Reportes</span>
+    </div>
+
+    <div class="tarjeta" routerLink="/gestion-tienda/facturacion">
+        <img src="/gestionTienda/facturacion_tienda.png" alt="Facturación">
+        <span>Facturación</span>
+    </div>
+
+
+    <div class="tarjeta" routerLink="/gestion-tienda/inventario">
+        <img src="/gestionTienda/inventario_tienda.png" alt="Inventario">
+        <span>Inventario</span>
+    </div>
+</div>
+

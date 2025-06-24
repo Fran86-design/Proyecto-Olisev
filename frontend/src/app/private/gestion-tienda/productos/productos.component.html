@@ -1,0 +1,36 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<div class="productos-wrapper">
+    <h2>Gestión de Productos</h2>
+    <button class="nuevo-producto-btn" (click)="irANuevoProducto()">+ Nuevo producto</button>
+
+    <div class="tabla-contenedor">
+        <table class="productos-tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio (€)</th>
+                    <th>Visible</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody #tablaBody></tbody>
+        </table>
+    </div>
+</div>
+
+@if (alerta.visible) {
+    <div class="alerta alerta-{{ alerta.tipo }}">
+        <span class="cerrar" (click)="alerta.visible = false">×</span>
+        {{ alerta.mensaje }}
+    </div>
+}
+
+<div class="botones-navegacion">
+    <button (click)="irAGestionTienda()">Gestión Tienda</button>
+    <button (click)="irAZonaPrivada()">Zona Privada</button>
+</div>

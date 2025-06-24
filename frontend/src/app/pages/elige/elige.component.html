@@ -1,0 +1,8 @@
+@if (!mostrarFinal) {
+  <app-escena-casa (irAFinal)="mostrarEscenaFinal()"></app-escena-casa>
+} @else {
+  <div class="slideFinal">
+    <app-escena-final (volverAlInicio)="volverAlInicio()"></app-escena-final>
+  </div>
+}
+

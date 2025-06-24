@@ -1,0 +1,94 @@
+<!-- Formulario de registro, referencia local 'formRef' para acceder desde el componente -->
+<!-- Escucha el evento `submit` del formulario. -->
+<form #formRef (submit)="registrar($event)" class="registro-form">
+  <h2>Registro Cliente Tienda</h2>
+
+  <label>Nombre completo</label>
+  <input type="text" name="nombre" required />
+
+  <label>Email</label>
+  <input type="email" name="email" required />
+
+  <label>Teléfono</label>
+  <input type="tel" name="telefono" required maxlength="9" />
+
+  <label>DNI</label>
+  <input type="text" name="dni" required maxlength="9" />
+
+  <label>Dirección</label>
+  <input type="text" name="direccion" required />
+
+  <label>Población</label>
+  <input type="text" name="poblacion" required />
+
+  <label>Ciudad</label>
+  <input type="text" name="ciudad" required />
+
+  <label>Código Postal</label>
+  <input type="text" name="cp" required maxlength="5" />
+
+  <label>Contraseña</label>
+  <div class="password-wrapper">
+    <input type="password" name="password" #passwordInput required />
+      <button type="button" class="toggle-password" (click)="togglePasswordVisibility('password')">
+        <svg
+        [style.display]="!showPassword ? 'none' : 'inline'"
+        xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20
+          c-7 0-11-8-11-8a21.37 21.37 0 0 1 5.27-6.73"/>
+          <path d="M1 1l22 22"/>
+      </svg>
+      <svg
+      [style.display]="showPassword ? 'none' : 'inline'"
+      xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+<label>Confirmar Contraseña</label>
+  <div class="password-wrapper">
+    <input type="password" name="confirmPassword" #confirmPasswordInput required />
+    <button type="button" class="toggle-password" (click)="togglePasswordVisibility('confirm')">
+      <svg
+      [style.display]="showConfirmPassword ? 'none' : 'inline'"
+      xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      <svg
+      [style.display]="!showConfirmPassword ? 'none' : 'inline'"
+      xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20
+      c-7 0-11-8-11-8a21.37 21.37 0 0 1 5.27-6.73"/>
+        path d="M1 1l22 22"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Botón para enviar el formulario -->
+  <button type="submit">Registrarse</button>
+  <button type="button" class="cerrar-btn" (click)="cerrar()">❌ Cancelar</button>
+</form>
+
+<!-- Sección de alerta/modal, solo se muestra si alerta.visible es true -->
+@if (alerta.visible) {
+  <div class="modal-overlay">
+    <div class="modal-alert" [class]="alerta.tipo">
+      <div class="modal-icon">
+        <!-- Muestra el ícono adecuado según el tipo de alerta -->
+        @if (alerta.tipo === 'success') { ✅ }
+        @if (alerta.tipo === 'error') { ❌ }
+        @if (alerta.tipo === 'warning') { ⚠️ }
+        @if (alerta.tipo === 'info') { ℹ️ }
+      </div>
+      <!-- Mensaje que acompaña la alerta -->
+      <p>{{ alerta.mensaje }}</p>
+      <button (click)="cerrarAlerta()">Cerrar</button>
+    </div>
+  </div>
+}

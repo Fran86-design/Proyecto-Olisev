@@ -1,0 +1,45 @@
+.mesa img{
+    position: absolute;
+    width: 85%;
+    height: 615px;
+    left: 10%;    
+}
+
+.aceite img{
+    position: absolute;
+    width: 14%;
+    height: 140px;
+    right: 5%;
+    top: 15%;    
+}
+
+.hoja img{
+    position: absolute;
+    width: 10%;
+    height: 110px;
+    left: 10%;
+    bottom: 10%;    
+}
+
+.tapon img{
+    position: absolute;
+    width: 7%;
+    height: 75px;
+    right:8.4%;
+    top: 17%;
+    transition: transform 1s ease-in-out;
+    transform-origin: center;
+    cursor: pointer;      
+}
+
+.tapon img.abierto {
+    /* Mueve el tapón 55px a la derecha y 120px hacia abajo */
+    /* Gira el tapón 800 grados en sentido antihorario */
+    transform: translate(55px, 120px) rotate(-800deg);
+}
+
+.tapon img.cerrado {
+    /* Posición original sin desplazamiento ni rotación */
+    transform: translate(0, 0) rotate(0deg);
+}
+

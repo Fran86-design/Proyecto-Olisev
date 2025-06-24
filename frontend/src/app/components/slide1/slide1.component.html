@@ -1,0 +1,30 @@
+<div class="slide">
+    <div class="info">
+        <h4 class="anim subtitulo">Olisev es...</h4>
+        <h1 class="anim titulo">El Sabor de la Tierra</h1>
+        <div class="botones anim botonesEntrada">
+            <button routerLink="/tienda-ventas">Tienda</button>
+        </div>
+    </div>
+
+    <div class="imagen anim imagenPrincipal">
+        <img src="/tiendaS1/producto1.png" alt="Aceite 1" />
+    </div>
+
+    <div class="textoVerticalNegro anim textoNegra">Olive Oil</div>
+    <div class="textoVerticalBlanco anim textoBlanca">Olive Oil</div>
+
+    <div>
+        <img class="hojaVerde anim hoja1" src="/tiendaS1/hoja1.png" alt="Decoración" />
+        <img class="hojaNegra anim hoja2" src="/tiendaS1/hoja2.png" alt="Decoración" />
+        <img class="prodPeq anim productoPeq" src="/tiendaS1/producto1.png" alt="Decoración" />
+    </div>
+
+    <div class="miniaturas anim miniaturasEntrada">
+        <img class="mini activa" src="/tiendaS1/producto1.png" alt="slide actual"/>
+        <img class="mini" src="/tiendaS2/producto2.png" alt="ir al slide 2" (click)="slideService.irA(1)"/>
+        <img class="mini" src="/tiendaS3/producto3.png" alt="ir al slide 3" (click)="slideService.irA(2)"/>
+        <img class="mini" src="/tiendaS4/producto4.jpg" alt="ir al slide 4" (click)="slideService.irA(3)"/>
+        <img class="mini" src="/tiendaS5/producto5.png" alt="ir al slide 5" (click)="slideService.irA(4)"/>
+    </div>
+</div>

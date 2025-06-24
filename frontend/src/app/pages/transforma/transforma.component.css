@@ -1,0 +1,102 @@
+body, html {
+  margin: 0;
+  overflow-x: hidden; 
+}
+
+.bloqueVideo {
+  height: 140vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1b1b1b;
+  position: relative;
+  overflow: hidden;
+}
+
+.videoHombre {
+  position: relative;
+  top: -10%;
+  width: 30%;
+  height: 65%;
+}
+
+.almazara, .casa, .tercero {
+  position: absolute;
+}
+
+.almazara {
+  right: 5px;
+}
+
+.casa {
+  bottom: 1%;
+}
+
+.tercero {
+  right: 0;
+  top: 40%;
+}
+
+video {
+  width: 45%;
+  max-width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.texto {
+  max-width: 50%;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 2;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+  padding: 2rem;
+}
+
+.primero, .segundo {
+  position: relative;
+}
+
+.primero {
+  right: 5%;
+}
+
+.primero :first-child,
+.segundo :first-child,
+.tercero :first-child {
+  position: absolute;
+  font-size: 2.5rem;
+  color: rgb(156, 204, 156);
+}
+
+.primero :first-child {
+  top: -30%;
+  right: 30%;
+}
+
+.segundo {
+  top: 5%;
+}
+
+.segundo :first-child {
+  top: -22%;
+  left: 15%;
+}
+
+.tercero :first-child {
+  top: -20%;
+  right: -20%;
+  position: relative;
+}
+
+.segundaSeccion {
+  position: relative;
+  margin-top: -72vh;
+}
+
+.terceraSeccion{
+  margin-top: -80vh;
+}
+
+
+

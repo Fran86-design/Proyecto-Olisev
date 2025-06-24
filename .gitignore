@@ -1,0 +1,15 @@
+# Node - Angular
+/frontend/node_modules/
+/frontend/dist/
+
+# Java - Spring Boot
+/backend/target/
+
+# IDEs y sistema
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

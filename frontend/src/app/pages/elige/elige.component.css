@@ -1,0 +1,26 @@
+.slideFinal{
+  animation: slideUp 1s ease forwards;
+  width: 100%;
+  height: 100vh;
+  background-image: url('/elige/campo.png'); 
+  background-size: cover;
+  background-position: center;
+  transition: transform 1s ease, opacity 1s ease;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translatex(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+

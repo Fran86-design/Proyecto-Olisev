@@ -1,0 +1,158 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+@if (productosStockBajo().length > 0) {
+    <div class="aviso-stock-bajo">
+        <p>⚠ Atención: Algunos productos tienen poco stock:</p>
+        <ul>
+            @for (p of productosStockBajo(); track p.id) {
+                <li>{{ p.nombre }} — solo quedan {{ p.stock }} unidades</li>
+            }
+        </ul>
+    </div>
+}
+
+
+
+<div class="filtro-categoria">
+    <label for="categoria">Filtrar por categoría:</label>
+    <select id="categoria" (change)="onCategoriaChange($event)">
+        <option value="todas">Todas</option>
+        <option value="aceite">Aceite</option>
+        <option value="aceitunas">Aceitunas</option>
+    </select>
+</div>
+
+<div class="tabla-contenedor">
+    <table class="tabla-inventario">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio compra</th>
+                <th>Precio venta</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (producto of productosFiltrados; track producto.id) {
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.categoria || '-' }}</td>
+                    <td>{{ producto.precioCompra | currency:'EUR':'symbol' }}</td>
+                    <td>{{ producto.precio | currency:'EUR':'symbol' }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>
+                        <div
+                        class="menu-hamburguesa"
+                        (click)="toggleMenu(producto.id)">
+                            ☰
+                            @if (menuAbierto() === producto.id) {
+                                <ul class="menu-acciones menu-lateral">
+                                    <li (click)="abrirModal(producto)">Editar</li>
+                                </ul>
+                            }
+                        </div>
+                    </td>
+                    <th>Última actualización</th>
+                    ...
+                    <td>
+                        @if (producto.fechaActualizacionStock) {
+                            {{ producto.fechaActualizacionStock | date:'dd/MM/yyyy HH:mm' }}
+                        } @else {
+                            -
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="botones-navegacion">
+    <button (click)="irAGestionTienda()">Gestión Tienda</button>
+    <button (click)="irAZonaPrivada()">Zona Privada</button>
+</div>
+
+@if (productoEditando()) {
+    <div class="modal-backdrop" (click)="cerrarModal()"></div>
+    <div class="modal" (click)="$event.stopPropagation()">
+        <h3>Editar Producto</h3>
+        <form (submit)="guardarCambios(); $event.preventDefault()">
+            <label>
+                Nombre:
+                <input
+                type="text"
+                [value]="productoEditando()!.nombre"
+                (input)="onInputChange($event, 'nombre')"
+                />
+            </label>
+
+            <label>
+                Categoría:
+                <input
+                type="text"
+                [value]="productoEditando()!.categoria"
+                (input)="onInputChange($event, 'categoria')"
+                />
+            </label>
+
+            <label>
+                Precio Compra:
+                <input
+                type="text"
+                [value]="productoEditando()!.precioCompra.toString()"
+                (input)="onNumeroDecimalValidado($event, 'precioCompra')"
+                />
+            </label>
+
+            <label>
+                Precio Venta:
+                <input
+                type="text"
+                [value]="productoEditando()!.precio.toString()"
+                (input)="onNumeroDecimalValidado($event, 'precioCompra')"
+                />
+            </label>
+
+            <label>
+                Stock actual:
+                <input
+                type="number"
+                [value]="productoEditando()!.stock"
+                readonly
+                style="background-color: #f0f0f0"
+                />
+            </label>
+
+            <label>
+                Añadir stock:
+                <input
+                type="number"
+                [value]="stockAAgregar"
+                (input)="onStockExtraChange($event)"
+                min="0"
+                />
+            </label>
+
+            <div class="modal-actions">
+                <button type="submit">Guardar</button>
+                <button type="button" (click)="cerrarModal()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+}
+
+@if (alerta.visible) {
+    <div class="alerta alerta-{{ alerta.tipo }}">
+        <span class="cerrar" (click)="alerta.visible = false">×</span>
+        {{ alerta.mensaje }}
+    </div>
+}
+
+
+

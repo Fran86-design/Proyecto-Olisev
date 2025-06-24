@@ -1,0 +1,30 @@
+<div class="slide">
+    <div class="info">
+        <h4 class="anim subtitulo">Olisev es...</h4>
+        <h1 class="anim titulo">Sabor e Inspiración</h1>
+        <div class="botones anim botonesEntrada">
+            <button routerLink="/tienda-ventas">Tienda</button>
+        </div>
+    </div>
+
+    <div class="imagen anim imagenPrincipal">
+        <img src="/tiendaS5/producto5.png" alt="Producto 5" />
+    </div>
+
+    <div class="textoVerticalNegro anim textoNegra">Manz. Entera</div>
+    <div class="textoVerticalBlanco anim textoBlanca">Manz. Entera</div>
+
+    <div>
+        <img class="hojaVerde anim hoja1" src="/tiendaS5/hoja2.png" alt="Decoración" />
+        <img class="hojaNegra anim hoja2" src="/tiendaS5/hoja1.png" alt="Decoración" />
+        <img class="prodPeq anim productoPeq" src="/tiendaS5/producto5.png" alt="Decoración" />
+    </div>
+
+    <div class="miniaturas anim miniaturasEntrada">
+        <img class="mini" src="/tiendaS1/producto1.png" alt="ir al slide 1" (click)="slideService.irA(0)"/>
+        <img class="mini" src="/tiendaS2/producto2.png" alt="ir al slide 1" (click)="slideService.irA(1)"/>
+        <img class="mini" src="/tiendaS3/producto3.png" alt="ir al slide 1" (click)="slideService.irA(2)"/>
+        <img class="mini" src="/tiendaS4/producto4.jpg" alt="ir al slide 1" (click)="slideService.irA(3)"/>
+        <img class="mini activa" src="/tiendaS5/producto5.png" alt="slide actual"/>
+    </div>
+</div>

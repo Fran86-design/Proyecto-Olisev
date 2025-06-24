@@ -1,0 +1,48 @@
+.flipbook {
+    width: 400px;
+    height: 600px;
+    margin: 10px auto;
+}
+
+.page {
+    background-color: rgb(218, 226, 221);
+    border: 1px solid #ccc;
+    font-family: "Jacques Francois Shadow", serif;
+    font-size: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+}
+
+.page1 {
+    left: 300px;
+}
+
+h4 {
+    color: rgb(100, 10, 10);
+}
+
+.recepcion {
+    width: 200px;
+}
+
+.molienda {
+    width: 200px;
+    margin-left: 150px;
+}
+
+
+.portada {
+    background-color: #2d2d2d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-image: url('/blog/fabrica.png');   
+    background-size: cover;
+    background-position: center;
+}
+

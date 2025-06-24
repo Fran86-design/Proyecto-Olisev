@@ -1,0 +1,148 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<div class="dashboard-container">
+  <h1 class="titulo-pagina">📊 Panel de Reportes</h1>
+
+  <div class="dashboard">
+    <div class="report-card">
+      <div class="card-header">Ventas de hoy</div>
+      <div class="card-body">
+        <p>Total registros: {{ ventasHoyFiltradas.length }}</p>
+        <button (click)="abrirModal('dia')">Ver</button>
+        <button (click)="descargarPDF('dia')">Descargar PDF</button>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="card-header">Ventas por mes</div>
+      <div class="card-body">
+        <p>Meses registrados: {{ ventasMesFiltradas.length }}</p>
+        <button (click)="abrirModal('mes')">Ver</button>
+        <button (click)="descargarPDF('mes')">Descargar PDF</button>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="card-header">Ventas por año</div>
+      <div class="card-body">
+        <p>Años registrados: {{ ventasAnio.length }}</p>
+        <button (click)="actualizarVentasDelAnio()">Ver</button>
+        <button (click)="descargarPDF('anio')">Descargar PDF</button>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="card-header">📘 Resúmenes guardados</div>
+      <div class="card-body">
+        @if (archivosGuardados.length === 0) {
+          <p style="color: gray;">No hay resúmenes anuales guardados.</p>
+        } @else {
+          <div class="archivos-anuales">
+            @for (anio of archivosGuardados; track anio) {
+              <button (click)="cargarResumenGuardado(anio)">Resumen {{ anio }}</button>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="card-header">📂 Archivo Stock</div>
+      <div class="card-body">
+        <div class="archivos-anuales">
+          @for (anio of archivosGuardados; track anio) {
+            <button (click)="abrirModalResumen(anio)">Resumen {{ anio }}</button>
+            
+          }
+          <button (click)="agregarAnioArchivo()">+ Año</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="card-header">📦 Control de Stock</div>
+      <div class="card-body">
+        <button (click)="irAlControlStock()">Ir al control</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog #modal>
+  <h3>
+    @if (tipoModalActual === 'dia') {
+      Ventas del día
+    } @else if (tipoModalActual === 'mes') {
+      Ventas del mes
+    } @else if (tipoModalActual === 'anio') {
+      Ventas del año
+    }
+  </h3>
+
+  @if (tipoModalActual === 'dia' || tipoModalActual === 'mes') {
+    <table>
+      <thead><tr><th>Fecha</th><th>Total</th></tr></thead>
+      <tbody #tablaCuerpo></tbody>
+    </table>
+
+    <h4>Productos vendidos</h4>
+    <table>
+      <thead><tr><th>Producto</th><th>Cantidad</th></tr></thead>
+      <tbody #tablaDetalleProductos></tbody>
+    </table>
+  }
+
+  @if (tipoModalActual === 'anio' || tipoModalActual === 'resumen-guardado') {
+    <div #detalleAnioContenedor></div>
+  }
+
+  @if (tipoModalActual === 'anio') {
+    <button (click)="guardarResumenActual()">Guardar resumen anual</button>
+  }
+
+  @if (tipoModalActual === 'resumen-guardado') {
+    <button (click)="descargarPDF('anio')">Descargar PDF</button>
+  }
+
+  <button (click)="cerrarModal()">Cerrar</button>
+</dialog>
+
+<dialog #modalResumenAnual>
+  <h2>Movimientos del año {{ anioResumenActivo }}</h2>
+
+  <div class="filtro-movimientos">
+    <label>Filtrar por tipo:</label>
+    <select (change)="cambiarFiltroTipo($event)">
+      <option value="TODOS">Todos</option>
+      <option value="ENTRADA">Entradas</option>
+      <option value="SALIDA">Salidas</option>
+    </select>
+  </div>
+
+  <table class="tabla-movimientos">
+    <thead><tr><th>Fecha</th><th>Tipo</th><th>Producto</th><th>Cantidad</th></tr></thead>
+    <tbody>
+      @for (mov of movimientosFiltrados(); track mov.id) {
+        <tr>
+          <td>{{ mov.fecha }}</td>
+          <td>{{ mov.tipo }}</td>
+          <td>{{ mov.producto.nombre}}</td>
+          <td>{{ mov.cantidad }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="acciones-modal">
+    <button (click)="cerrarModalResumenAnual()">❌ Cerrar</button>
+  </div>
+</dialog>
+
+<div class="botones-navegacion">
+    <button (click)="irAGestionTienda()">Gestión Tienda</button>
+    <button (click)="irAZonaPrivada()">Zona Privada</button>
+</div>

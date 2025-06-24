@@ -1,0 +1,25 @@
+<div class="carrusel">
+    <div class="slides">
+      <!-- Si el valor del signal slideActual es 0, se muestra el componente de la primera slide -->
+      @if (slideActual() === 0) {
+        <app-slide1></app-slide1>
+      } @else if (slideActual() === 1) {
+        <app-slide2></app-slide2>
+      } @else if (slideActual() === 2) {
+        <app-slide3></app-slide3>
+      } @else if (slideActual() === 3) {
+        <app-slide4></app-slide4>
+      } @else if (slideActual() === 4) {
+        <app-slide5></app-slide5>
+      }
+    </div>
+
+    <div class="flecha izq" (click)="anterior()">
+        <img src="/tiendaS1/arrow-left.svg" alt="izquierda" />
+    </div>
+    <div class="flecha der" (click)="siguiente()">
+        <img src="/tiendaS1/arrow-right.svg" alt="derecha" />
+    </div>
+</div>
+
+<div class="marco"></div>

@@ -1,0 +1,98 @@
+<app-usaurio-box 
+[nombre]="'Juan'" 
+[primerApellido]="'Pérez'" 
+[tiempoConexion]="'00:15:23'">
+</app-usaurio-box>
+
+<h2 class="titulo"> Gestión de Proveedores</h2>
+
+<div class="botones-acciones">
+  <button (click)="abrirModal('registro')">➕ Registrar Cliente</button>
+  <button (click)="abrirModal('lista')">📋 Ver Lista de Clientes</button>
+</div>
+
+@if (modal === 'registro') {
+  <div class="modal">
+    <div class="modal-contenido">
+      <h3>📝 Registrar Cliente Fábrica</h3>
+      <form (submit)="registrarCliente($event)">
+        <div class="campo"><label>Nombre:</label><input name="nombre" required></div>
+        <div class="campo"><label>Apellidos:</label><input name="apellidos" required></div>
+        <div class="campo"><label>NIF:</label><input name="nif" required></div>
+        <div class="campo"><label>Finca:</label><input name="finca" required></div>
+        <div class="campo"><label>Dirección:</label><input name="direccion" required></div>
+        <div class="campo"><label>Teléfono:</label><input name="telefono" required></div>
+        <div class="campo"><label>Email:</label><input name="email" type="email" required></div>
+        <div class="campo">
+          <label>Contraseña:</label>
+          <input name="password" [type]="verPassword ? 'text' : 'password'" required>
+        </div>
+        <div class="campo-checkbox">
+          <input type="checkbox" (change)="verPassword = !verPassword"> Mostrar contraseña
+        </div>
+        <div class="acciones-formulario">
+          <button type="submit" class="btn verde">✅ Registrar</button>
+          <button type="button" class="btn rojo" (click)="cerrarModal()">❌ Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (modal === 'lista') {
+  <div class="modal">
+    <div class="modal-contenido lista-clientes">
+      <h3>Lista de Clientes Fábrica</h3>
+
+      <div class="tabla-clientes-wrapper">
+        <table class="tabla-clientes">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Dirección</th>
+              <th>Finca</th>
+              <th>NIF</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (cliente of clientes; track cliente.id) {
+              <tr>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellidos }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.finca }}</td>
+                <td>{{ cliente.nif }}</td>
+                <td>
+                  <button class="btn" (click)="regenerarPassword(cliente.id!)">Regenerar</button>
+                  <button class="btn rojo" (click)="eliminarCliente(cliente.id!)">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="acciones-formulario">
+        <button class="btn" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="botones-navegacion">
+  <button (click)="irAZonaPrivada()"> Volver a Zona Privada</button>
+</div>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}
+
+

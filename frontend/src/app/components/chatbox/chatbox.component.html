@@ -1,0 +1,22 @@
+<!-- Botón flotante para abrir el chat -->
+<!-- llama al método toggleChat() cuando se hace clic -->
+<!-- [style.display] Property binding: oculta el botón si el chat está abierto -->
+<div class="chatToggleButton" (click)="toggleChat()" [style.display]="isOpen ? 'none' : 'block'">
+    <img src="/iconos/icono_chat.svg" alt="chat">
+</div>
+<!-- si el chat está cerrado, aplica la clase 'hidden' -->
+<div class="chatbox" [class.hidden]="!isOpen">
+    <div class="chatHeader" (click)="toggleChat()">
+        ✖ Cerrar
+    </div>
+
+    <div class="chatBody">
+        <!-- Referencia local para acceder al elemento desde TS con @ViewChild -->
+        <div #messagesContainer class="chatMessages"></div>
+
+        <div class="chatOptions">
+            <button (click)="sendStep('¿Cómo uso esta página?')">¿Cómo uso esta página?</button>
+            <button (click)="sendStep('Necesito soporte')">Necesito soporte</button>
+        </div>
+    </div>
+</div>

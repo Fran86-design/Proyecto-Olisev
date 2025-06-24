@@ -1,0 +1,146 @@
+<div class="area-cliente">
+
+  @if (usuario) {
+    <div class="bienvenida">
+      <h2>👋 ¡Hola {{ usuario.nombre }}!</h2>
+      <p>Bienvenido/a a tu área personal. Aquí puedes ver tus pedidos y actualizar tu información.</p>
+    </div>
+
+    <div class="acciones">
+      <button class="btn-accion" (click)="verPedidos()">📦 Ver mis pedidos</button>
+      <button class="btn-accion" (click)="editarDatos()">✏️ Editar mis datos</button>
+      <button class="btn-accion cerrar" (click)="cerrarSesion()">🔒 Cerrar sesión</button>
+      <button class="btn-accion" (click)="mostrarFavoritos = !mostrarFavoritos">
+        🧡 Mis favoritos
+      </button>
+    </div>
+
+    @if (mostrarPedidos && pedidos.length > 0) {
+      <div class="pedidos-recientes">
+        <div class="cabecera-pedidos">
+          <h3>📦 Mis últimos pedidos</h3>
+          <button class="cerrar-resumen" (click)="mostrarPedidos = false">❌ Cerrar</button>
+        </div>
+        <ul>
+          @for (pedido of pedidos; track pedido.id) {
+            <li>
+              Pedido #{{ pedido.id }} - {{ pedido.fechaPedido }} -
+              <p [style.color]="pedido.enviado ? 'green' : 'red'">
+                {{ pedido.enviado ? 'Enviado' : 'Pendiente' }}
+              </p>
+              <button (click)="verDetalles(pedido)">🔍 Ver detalles</button>
+              <button (click)="descargarFactura(pedido.id)">📄 Factura</button>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  }
+
+  @if (mostrarPedidos && pedidos.length === 0) {
+    <p>No tienes pedidos aún.</p>
+  }
+
+  @if (pedidoSeleccionado) {
+    <div class="detalles-pedido">
+      <h4>🧾 Detalles del pedido #{{ pedidoSeleccionado.id }}</h4>
+      <p>Fecha:{{ pedidoSeleccionado.fechaPedido }}</p>
+      <p>Total:{{ pedidoSeleccionado.total }} €</p>
+      <ul>
+        @for (linea of pedidoSeleccionado.detalles; track linea.nombreProducto) {
+          <li>
+            {{ linea.nombreProducto }} - {{ linea.cantidad }} x {{ linea.precioUnitario }} €
+          </li>
+        }
+      </ul>
+      <button (click)="pedidoSeleccionado = null">❌ Cerrar</button>
+    </div>
+  }
+
+  @if (mostrarFavoritos && favoritos.length > 0) {
+    <div class="favoritos">
+      <h3>🧡 Mis productos favoritos</h3>
+      <ul>
+        @for (fav of favoritos; track fav.id) {
+          <li class="favorito-item">
+            <span>{{ fav.nombre }} - {{ fav.precio.toFixed(2) }} €</span>
+            <button (click)="abrirModalCantidad(fav)">🛒 Añadir al carrito</button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+  @if (mostrarFavoritos && favoritos.length === 0) {
+    <p>No tienes productos favoritos aún.</p>
+  }
+
+  @if (mostrarFormularioEdicion) {
+    <form class="form-edicion" (submit)="guardarCambios($event)">
+      <div class="form-header">
+        <h3>📝 Editar mis datos</h3>
+        <button type="button" class="cerrar-form" (click)="cancelarEdicion()">✖</button>
+      </div>
+
+      <div class="form-grupo">
+        <label>Nombre</label>
+        <input type="text" name="nombre" [value]="usuario.nombre" required>
+      </div>
+
+      <div class="form-grupo">
+        <label>Email</label>
+        <input type="email" name="email" [value]="usuario.email" required>
+      </div>
+
+      <div class="form-grupo">
+        <label>Teléfono</label>
+        <input type="tel" name="telefono" [value]="usuario.telefono || ''">
+      </div>
+
+      <div class="form-grupo">
+        <label>Dirección</label>
+        <input type="text" name="direccion" [value]="usuario.direccion || ''" required>
+      </div>
+
+      <div class="form-grupo">
+        <label>Contraseña actual</label>
+        <input type="password" name="passwordActual">
+      </div>
+
+      <div class="form-grupo">
+        <label>Nueva contraseña</label>
+        <input type="password" name="nuevaPassword" minlength="8">
+      </div>
+
+      <div class="botones-edicion">
+        <button type="submit">💾 Guardar</button>
+        <button type="button" (click)="cancelarEdicion()">❌ Cancelar</button>
+      </div>
+    </form>
+  }
+
+  <div id="modalCantidad" class="modal-overlay hidden" #modalCantidad>
+    <div class="modal-content">
+      <h3 id="modalNombre" #modalNombre></h3>
+      <label for="cantidadInput">Cantidad:</label>
+      <div class="control-cantidad">
+      <button id="btnMenos" #btnMenos>−</button>
+      <span id="cantidadVisual" #cantidadVisual>1</span>
+      <button id="btnMas" #btnMas>+</button>
+    </div>
+    <div class="modal-botones">
+      <button id="btnAgregarCarrito" #btnAgregarCarrito>Añadir al carrito</button>
+      <button id="btnCancelarModal" #btnCancelarModal>Cancelar</button>
+    </div>
+  </div>
+</div>
+
+@if (alerta.visible) {
+  <div class="alerta alerta-{{ alerta.tipo }}">
+    <span class="cerrar" (click)="alerta.visible = false">×</span>
+    {{ alerta.mensaje }}
+  </div>
+}
+
+
+

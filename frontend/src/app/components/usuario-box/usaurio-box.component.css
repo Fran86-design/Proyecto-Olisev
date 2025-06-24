@@ -1,0 +1,45 @@
+.usuario-box {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 0.6rem;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  top: 2px;
+  left: 84.8%;
+  box-sizing: border-box;
+}
+
+.usuario-box p {
+  margin: 0.2rem 0;
+  color: #374151;
+  font-weight: 500;
+}
+
+.cerrar-sesion-btn {
+  margin-top: 0.3rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.6rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  align-self: center;
+  font-family: "Jacques Francois Shadow", serif;
+}
+
+.cerrar-sesion-btn:hover {
+  background-color: #dc2626;
+}
+
+@media (max-width: 1024px) {
+  .usuario-box {
+    left: 69%;
+  }
+}

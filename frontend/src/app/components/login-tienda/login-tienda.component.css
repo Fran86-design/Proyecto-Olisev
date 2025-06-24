@@ -1,0 +1,151 @@
+.login {
+  border: 1px solid black;
+  width: 400px;
+  height: auto;
+  min-height: 400px;
+  padding-bottom: 0x;
+  background: url(/login/login_tienda.png);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.75);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  margin: 10%;
+}
+
+form {
+  display: block;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(40%);
+  flex-direction: column;
+  display: flex;
+  gap: 5px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 24px;
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+  margin-bottom: 60px;
+}
+
+label {
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding-left: 10px;
+}
+
+input {
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  padding: 0px 20px;
+  border: none;
+  margin-bottom: 20px;
+  color: white;
+}
+
+button {
+  background-color: #32402F;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 40px;
+  border: none;
+  margin: -3px 0px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+  color: white;
+  cursor: pointer;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 80%;
+  padding-right: 2.8rem;
+}
+
+.ojo-btn {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+}
+
+.mensaje-error {
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.extra-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button.secundario {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.olvido-contrasena {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.olvido-contrasena a {
+  color: #ddd;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.olvido-contrasena a:hover {
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.mensaje-recuperacion {
+  color: #ccffcc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
