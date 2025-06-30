@@ -47,6 +47,6 @@ export class GestionTiendaComponent implements OnInit{
    * Método para volver a la página anterior en el historial de navegación.
    */
   volver(): void {
-    this.location.back();
+    this.router.navigate(['/zona-privada']);
   }
 }

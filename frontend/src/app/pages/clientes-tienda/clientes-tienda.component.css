@@ -28,6 +28,13 @@
   color: #555;
 }
 
+.acciones-pedido {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
 .btn-accion {
   font-size: 0.95rem;
   font-weight: 500;
@@ -172,6 +179,31 @@ pedidos-recientes {
 
 .detalles-pedido button:hover {
   background-color: #a93226;
+}
+
+.detalles-pedido.inline {
+  background-color: #f8fafa;
+  border: 1px solid #dce2e7;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  animation: fadeIn 0.2s ease;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.detalles-pedido.inline ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.75rem;
+}
+
+.detalles-pedido.inline li {
+  background-color: #eef1f4;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
 }
 
 .modal-overlay {

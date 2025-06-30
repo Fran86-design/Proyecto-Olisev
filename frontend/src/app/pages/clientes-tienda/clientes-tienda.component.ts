@@ -240,13 +240,17 @@ export class ClientesTiendaComponent implements OnInit {
     link.download = `pedido_${id}.pdf`;
     // Dispara el clic automáticamente para descargar el archivo
     link.click();
+    this.mostrarAlerta('success', `Factura del pedido #${id} descargada`);
     })
-    this.mostrarAlerta('error', 'No se pudo descargar la factura');
+    .catch(() => {
+      this.mostrarAlerta('error', 'No se pudo descargar la factura');
+    });
   }
   // Cambia la vista para mostrar la sección de pedidos
   verPedidos(): void {
     this.mostrarPedidos = true;
   }
+
   // Activa el formulario para editar los datos del usuario
   editarDatos(): void {
     // Muestra el formulario de edición
